@@ -153,6 +153,7 @@ work_orders 1---N attachments
 - Responsável da OS definido pelo cadastro de responsável da área de solicitação.
 - Solicitantes não podem alterar status; somente administrador e responsável vinculado à OS podem fazer essa alteração.
 - Campo de anexos com upload de arquivos, imagens, PDFs, documentos e planilhas.
+- Administrador pode adicionar, editar, excluir logicamente e reativar usuários, incluindo nome, e-mail, perfil, estabelecimento e foto de perfil.
 - Atribuição de responsável, motorista, veículo e rota.
 - Alteração de status com histórico.
 - Mensagens internas por OS.

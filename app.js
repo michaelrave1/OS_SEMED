@@ -24,6 +24,8 @@ const defaultAreaResponsibles = {
   "ALIMENTAÇÃO ESCOLAR": "logistica@dirlogistica.local",
 };
 
+const roles = ["Administrador", "Solicitante", "Responsável/Técnico", "Logística", "Gestor/Consulta"];
+
 const navItems = [
   ["dashboard", "Dashboard"],
   ["orders", "Ordens de serviço"],
@@ -42,6 +44,7 @@ let state = loadState();
 let currentView = "dashboard";
 let drawerOrderId = null;
 let activeCrud = "units";
+let editingUserId = null;
 
 function loadState() {
   const stored = localStorage.getItem(STORAGE_KEY);
@@ -138,6 +141,8 @@ function normalizeState(next) {
   next.users = (next.users || demoUsers).map((user) => ({
     ...user,
     unit: user.unit || "",
+    photo: user.photo || "",
+    active: user.active !== false,
   }));
   next.logistics = (next.logistics || []).map((item) => ({
     ...item,
@@ -241,7 +246,7 @@ function currentUserUnit() {
 
 function responsibleUserForArea(area) {
   const email = state.areaResponsibles?.[area] || "";
-  return state.users.find((user) => user.email === email) || null;
+  return state.users.find((user) => user.email === email && user.active !== false) || null;
 }
 
 function responsibleNameForArea(area) {
@@ -260,6 +265,21 @@ function normalizeAttachments(value) {
   return (value || []).map((item) => typeof item === "string" ? { id: makeId("ATT"), name: item, source: "importado" } : item);
 }
 
+function avatarHtml(user, size = "") {
+  const cls = `avatar ${size}`.trim();
+  if (user?.photo) return `<img class="${cls}" src="${escapeHtml(user.photo)}" alt="Foto de ${escapeHtml(user.name || "usuário")}" />`;
+  return `<span class="${cls}">${escapeHtml(initials(user?.name || user?.email || "U"))}</span>`;
+}
+
+function initials(value) {
+  return value
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]?.toUpperCase())
+    .join("") || "U";
+}
+
 function render() {
   if (!state.session) return renderLogin();
   renderShell();
@@ -272,9 +292,9 @@ function renderLogin() {
     const data = new FormData(event.currentTarget);
     const email = data.get("email").toString().trim().toLowerCase();
     const password = data.get("password").toString();
-    const user = state.users.find((item) => item.email === email && item.password === password);
+    const user = state.users.find((item) => item.email === email && item.password === password && item.active !== false);
     if (!user) return alert("E-mail ou senha inválidos.");
-    state.session = { id: user.id, name: user.name, email: user.email, role: user.role, unit: user.unit };
+    state.session = { id: user.id, name: user.name, email: user.email, role: user.role, unit: user.unit, photo: user.photo || "" };
     saveState();
     currentView = "dashboard";
     render();
@@ -290,6 +310,7 @@ function renderShell() {
           <h1>Ordens de Serviço</h1>
         </div>
         <div class="profile">
+          ${avatarHtml(currentUser(), "small")}
           <strong>${escapeHtml(state.session.name)}</strong>
           <span>${escapeHtml(state.session.role)}</span>
           <span>${escapeHtml(currentUserUnit() || "Sem estabelecimento")}</span>
@@ -954,55 +975,106 @@ function renderCrudTable() {
 
 function usersHtml() {
   const areas = unique(state.logistics.map((item) => item.area));
+  const editingUser = state.users.find((user) => user.id === editingUserId) || null;
+  if (!isAdmin()) {
+    return `
+      ${headerHtml("Usuários", "Gestão disponível apenas para administradores.")}
+      <section class="card section"><p class="muted">Seu perfil não tem permissão para modificar usuários.</p></section>
+    `;
+  }
   return `
-    ${headerHtml("Usuários", "Cada usuário pertence a um único estabelecimento. Apenas administradores podem alterar esse vínculo.")}
+    ${headerHtml("Usuários", "Adicione, exclua e modifique nome, e-mail, perfil, estabelecimento e foto de perfil.")}
     <section class="grid two-col">
       <div class="card section">
-        <h3>Vínculo por estabelecimento</h3>
-        <div class="table-wrap">
-          <table>
-            <thead><tr><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Estabelecimento vinculado</th></tr></thead>
-            <tbody>
-              ${state.users.map((user) => `
-                <tr>
-                  <td>${escapeHtml(user.name)}</td>
-                  <td>${escapeHtml(user.email)}</td>
-                  <td>${escapeHtml(user.role)}</td>
-                  <td>
-                    ${isAdmin()
-                      ? selectField(`user-unit-${user.id}`, state.units.filter((item) => item.active).map((item) => item.name), user.unit, "Selecione o estabelecimento")
-                      : escapeHtml(user.unit || "Sem estabelecimento")}
-                  </td>
-                </tr>
-              `).join("")}
-            </tbody>
-          </table>
-        </div>
+        <h3>${editingUser ? "Editar usuário" : "Novo usuário"}</h3>
+        <form class="grid" id="user-form" data-id="${editingUser?.id || ""}">
+          <div class="user-photo-row">
+            ${avatarHtml(editingUser, "large")}
+            <label>Foto de perfil
+              <input name="photo" type="file" accept="image/*" />
+            </label>
+          </div>
+          <label>Nome
+            <input name="name" value="${escapeHtml(editingUser?.name || "")}" required />
+          </label>
+          <label>E-mail
+            <input name="email" type="email" value="${escapeHtml(editingUser?.email || "")}" required />
+          </label>
+          <label>Perfil
+            ${selectField("role", roles, editingUser?.role || "Solicitante", "Selecione o perfil")}
+          </label>
+          <label>Estabelecimento
+            ${selectField("unit", state.units.filter((item) => item.active).map((item) => item.name), editingUser?.unit || "", "Selecione o estabelecimento")}
+          </label>
+          <div class="actions">
+            <button type="submit">${editingUser ? "Salvar alterações" : "Adicionar usuário"}</button>
+            ${editingUser ? `<button type="button" class="secondary" id="cancel-user-edit">Cancelar</button>` : ""}
+          </div>
+          <p class="muted">Novos usuários recebem a senha inicial <strong>admin123</strong>.</p>
+        </form>
       </div>
       <div class="card section">
         <h3>Responsável por área de solicitação</h3>
         <div class="grid">
           ${areas.map((area) => `
             <label>${escapeHtml(area)}
-              ${isAdmin()
-                ? selectField(`area-responsible-${areaKey(area)}`, state.users.map((user) => user.email), state.areaResponsibles?.[area] || "", "Selecione o responsável")
-                : `<input value="${escapeHtml(responsibleUserForArea(area)?.name || "Sem responsável")}" readonly />`}
+              ${selectField(`area-responsible-${areaKey(area)}`, state.users.filter((user) => user.active !== false).map((user) => user.email), state.areaResponsibles?.[area] || "", "Selecione o responsável")}
             </label>
           `).join("")}
         </div>
       </div>
+    </section>
+    <section class="card section" style="margin-top:16px">
+      <h3>Usuários cadastrados</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Foto</th><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Estabelecimento</th><th>Situação</th><th>Ações</th></tr></thead>
+            <tbody>
+              ${state.users.map((user) => `
+                <tr>
+                  <td>${avatarHtml(user)}</td>
+                  <td>${escapeHtml(user.name)}</td>
+                  <td>${escapeHtml(user.email)}</td>
+                  <td>${escapeHtml(user.role)}</td>
+                  <td>${escapeHtml(user.unit || "Sem estabelecimento")}</td>
+                  <td>${user.active !== false ? `<span class="pill">Ativo</span>` : `<span class="pill danger">Inativo</span>`}</td>
+                  <td class="actions">
+                    <button class="secondary" data-edit-user="${user.id}">Editar</button>
+                    <button class="${user.active !== false ? "danger" : "secondary"}" data-toggle-user="${user.id}">${user.active !== false ? "Excluir" : "Reativar"}</button>
+                  </td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
     </section>
   `;
 }
 
 function bindUsersEvents() {
   if (!isAdmin()) return;
-  state.users.forEach((user) => {
-    document.querySelector(`[name="user-unit-${user.id}"]`)?.addEventListener("change", (event) => {
-      user.unit = event.currentTarget.value;
-      if (state.session.id === user.id) state.session.unit = user.unit;
+  document.querySelector("#user-form")?.addEventListener("submit", saveUser);
+  document.querySelector("#cancel-user-edit")?.addEventListener("click", () => {
+    editingUserId = null;
+    renderView();
+  });
+  document.querySelectorAll("[data-edit-user]").forEach((button) => {
+    button.addEventListener("click", () => {
+      editingUserId = button.dataset.editUser;
+      renderView();
+    });
+  });
+  document.querySelectorAll("[data-toggle-user]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const user = state.users.find((item) => item.id === button.dataset.toggleUser);
+      if (!user) return;
+      if (user.id === state.session.id && user.active !== false) {
+        alert("Você não pode excluir o usuário que está logado.");
+        return;
+      }
+      user.active = user.active === false;
       saveState();
-      renderShell();
+      renderView();
     });
   });
   unique(state.logistics.map((item) => item.area)).forEach((area) => {
@@ -1011,6 +1083,53 @@ function bindUsersEvents() {
       saveState();
     });
   });
+}
+
+async function saveUser(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const formData = new FormData(form);
+  const id = form.dataset.id || makeId("USR");
+  const existing = state.users.find((user) => user.id === id);
+  const email = formData.get("email").toString().trim().toLowerCase();
+  const duplicate = state.users.find((user) => user.email.toLowerCase() === email && user.id !== id);
+  if (duplicate) {
+    alert("Já existe um usuário com esse e-mail.");
+    return;
+  }
+
+  const previousEmail = existing?.email;
+  const photoFile = formData.get("photo");
+  const photo = photoFile?.name ? await readFileAsDataUrl(photoFile) : existing?.photo || "";
+  const payload = {
+    id,
+    name: formData.get("name").toString().trim(),
+    email,
+    role: formData.get("role").toString(),
+    unit: formData.get("unit").toString(),
+    photo,
+    password: existing?.password || "admin123",
+    active: existing?.active !== false,
+  };
+
+  if (existing) {
+    Object.assign(existing, payload);
+    if (previousEmail && previousEmail !== email) {
+      Object.keys(state.areaResponsibles).forEach((area) => {
+        if (state.areaResponsibles[area] === previousEmail) state.areaResponsibles[area] = email;
+      });
+    }
+  } else {
+    state.users.unshift(payload);
+  }
+
+  if (state.session.id === id) {
+    state.session = { id: payload.id, name: payload.name, email: payload.email, role: payload.role, unit: payload.unit, photo: payload.photo };
+  }
+
+  editingUserId = null;
+  saveState();
+  renderShell();
 }
 
 function docsHtml() {

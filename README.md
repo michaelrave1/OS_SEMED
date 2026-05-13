@@ -27,6 +27,7 @@ Senha para todos: `admin123`
 - Responsavel definido automaticamente pela area de solicitacao, com cadastro na tela Usuarios.
 - Status bloqueado para solicitantes; apenas administrador ou responsavel da OS pode alterar.
 - Upload de anexos no formulario de OS para imagens, PDFs, documentos, planilhas e outros arquivos.
+- Gestao de usuarios para administrador, com adicionar, editar, excluir/reativar, alterar nome, e-mail, perfil, estabelecimento e foto de perfil.
 - Status de OS e historico de alteracoes.
 - Mensagens internas por OS.
 - Cadastros de unidades, logistica, rotas, veiculos, motoristas e usuarios.
