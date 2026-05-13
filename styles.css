@@ -464,6 +464,27 @@ tr:hover td {
   color: var(--muted);
 }
 
+.attachment-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.attachment-item {
+  display: grid;
+  gap: 4px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfb;
+}
+
+.attachment-item a {
+  color: var(--primary);
+  font-weight: 700;
+}
+
 .empty {
   padding: 28px;
   text-align: center;

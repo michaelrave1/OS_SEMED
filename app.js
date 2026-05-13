@@ -19,6 +19,11 @@ const demoUsers = [
   { id: "u-gestor", name: "Gestor Consulta", email: "gestor@dirlogistica.local", password: "admin123", role: "Gestor/Consulta", unit: "" },
 ];
 
+const defaultAreaResponsibles = {
+  DETIC: "tecnico@dirlogistica.local",
+  "ALIMENTAÇÃO ESCOLAR": "logistica@dirlogistica.local",
+};
+
 const navItems = [
   ["dashboard", "Dashboard"],
   ["orders", "Ordens de serviço"],
@@ -47,6 +52,7 @@ function loadState() {
     dataVersion: DATA_VERSION,
     session: null,
     users: demoUsers,
+    areaResponsibles: { ...defaultAreaResponsibles },
     units: (seed.UNIDADES || []).map((row) => ({
       id: row["Row ID"],
       type: row.TIPO || "Não informado",
@@ -90,7 +96,7 @@ function loadState() {
       detail: row["DETALHAMENTO DA ATIVIDADE"] || "",
       hasMaterial: row["POSSUI MATERIAL"] || "Não informado",
       observation: row["OBSERVAÇÃO"] || "",
-      attachments: compact([row.ANEXOS, row.FOTO, row.DOCUMENTOS]),
+      attachments: normalizeAttachments(compact([row.ANEXOS, row.FOTO, row.DOCUMENTOS])),
       policeReport: row["B.O - REDS"] || "",
       occurredAt: excelDate(row["DATA DO OCORRIDO"]) || "",
       responsible: row.RESPONSAVEL || "",
@@ -128,6 +134,7 @@ function normalizeState(next) {
     next.logistics = mapLogisticsRows(seed.LOGISTICA);
     next.dataVersion = DATA_VERSION;
   }
+  next.areaResponsibles = { ...defaultAreaResponsibles, ...(next.areaResponsibles || {}) };
   next.users = (next.users || demoUsers).map((user) => ({
     ...user,
     unit: user.unit || "",
@@ -135,6 +142,10 @@ function normalizeState(next) {
   next.logistics = (next.logistics || []).map((item) => ({
     ...item,
     description: item.description || "",
+  }));
+  next.orders = (next.orders || []).map((order) => ({
+    ...order,
+    attachments: normalizeAttachments(order.attachments),
   }));
   assignDefaultUserUnits(next);
   saveState(next);
@@ -226,6 +237,27 @@ function currentUser() {
 
 function currentUserUnit() {
   return currentUser()?.unit || "";
+}
+
+function responsibleUserForArea(area) {
+  const email = state.areaResponsibles?.[area] || "";
+  return state.users.find((user) => user.email === email) || null;
+}
+
+function responsibleNameForArea(area) {
+  const user = responsibleUserForArea(area);
+  return user ? user.name : "";
+}
+
+function canChangeStatus(order = null) {
+  if (isAdmin()) return true;
+  const responsible = order?.responsible || responsibleNameForArea(order?.area || "");
+  const user = currentUser();
+  return Boolean(responsible && user && (responsible === user.name || responsible === user.email));
+}
+
+function normalizeAttachments(value) {
+  return (value || []).map((item) => typeof item === "string" ? { id: makeId("ATT"), name: item, source: "importado" } : item);
 }
 
 function render() {
@@ -474,6 +506,8 @@ function orderFormHtml(order = null) {
   const selectedType = order?.activityType || "";
   const selectedDescription = order?.description || "";
   const selectedDetail = order?.detail || "";
+  const selectedResponsible = order?.responsible || responsibleNameForArea(selectedArea);
+  const statusEditable = canChangeStatus(order || { area: selectedArea, responsible: selectedResponsible });
   return `
     ${headerHtml(title, subtitle)}
     <form class="card section form-grid" id="order-form" data-id="${order?.id || ""}">
@@ -496,10 +530,10 @@ function orderFormHtml(order = null) {
         ${selectField("unit", unitOptions, selectedUnit, "Selecione o estabelecimento", !isAdmin())}
       </label>
       <label>Status
-        ${selectField("status", statuses, order?.status || "Aberta")}
+        ${selectField("status", statuses, order?.status || "Aberta", "Selecione o status", !statusEditable)}
       </label>
       <label>Responsável
-        <input name="responsible" value="${escapeHtml(order?.responsible || "")}" placeholder="Nome do responsável" />
+        <input name="responsible" value="${escapeHtml(selectedResponsible)}" placeholder="Definido pela área de solicitação" readonly />
       </label>
       <label>Possui material?
         ${selectField("hasMaterial", ["Não informado", "Sim", "Não"], order?.hasMaterial || "Não informado")}
@@ -523,7 +557,8 @@ function orderFormHtml(order = null) {
         <input name="policeReport" value="${escapeHtml(order?.policeReport || "")}" />
       </label>
       <label>Anexos
-        <input name="attachments" value="${escapeHtml((order?.attachments || []).join(", "))}" placeholder="Nomes ou links separados por vírgula" />
+        <input name="attachments" type="file" multiple accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.zip,.rar,.ppt,.pptx" />
+        ${attachmentsPreview(order?.attachments)}
       </label>
       <div class="span-3 actions">
         <button type="submit">${order ? "Salvar alterações" : "Criar ordem"}</button>
@@ -542,6 +577,65 @@ function selectField(name, options, selected = "", placeholder = "Não informado
     </select>
     ${disabled ? `<input type="hidden" name="${name}" value="${escapeHtml(selected)}" />` : ""}
   `;
+}
+
+function attachmentsPreview(attachments = []) {
+  const normalized = normalizeAttachments(attachments);
+  if (!normalized.length) return `<span class="muted">Nenhum arquivo anexado.</span>`;
+  return `
+    <div class="attachment-list">
+      ${normalized.map((file) => `<span class="pill info">${escapeHtml(file.name || file.source || "Arquivo")}</span>`).join("")}
+    </div>
+  `;
+}
+
+function attachmentsListHtml(attachments = []) {
+  const normalized = normalizeAttachments(attachments);
+  if (!normalized.length) return `<p class="muted">Nenhum arquivo anexado.</p>`;
+  return `
+    <div class="grid">
+      ${normalized.map((file) => `
+        <article class="attachment-item">
+          <strong>${escapeHtml(file.name || "Arquivo")}</strong>
+          <span class="muted">${file.size ? formatFileSize(file.size) : escapeHtml(file.source || "anexo")}</span>
+          ${file.dataUrl ? `<a href="${escapeHtml(file.dataUrl)}" download="${escapeHtml(file.name || "arquivo")}">Baixar</a>` : ""}
+        </article>
+      `).join("")}
+    </div>
+  `;
+}
+
+function formatFileSize(bytes) {
+  if (!bytes) return "";
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / 1024 / 1024).toFixed(1)} MB`;
+}
+
+function areaKey(area) {
+  return encodeURIComponent(area);
+}
+
+async function filesToAttachments(files) {
+  const validFiles = files.filter((file) => file && file.name && file.size > 0);
+  return Promise.all(validFiles.map(async (file) => ({
+    id: makeId("ATT"),
+    name: file.name,
+    type: file.type || "application/octet-stream",
+    size: file.size,
+    uploadedAt: new Date().toISOString(),
+    uploadedBy: state.session.email,
+    dataUrl: file.size <= 900000 ? await readFileAsDataUrl(file) : "",
+  })));
+}
+
+function readFileAsDataUrl(file) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => resolve("");
+    reader.readAsDataURL(file);
+  });
 }
 
 function logisticsMatches(item, area = "", nature = "", type = "", description = "") {
@@ -608,6 +702,7 @@ function bindCascadeFields() {
     fillSelect(type, [], "Selecione o tipo");
     fillSelect(description, [], "Selecione a descrição");
     fillSelect(detail, [], "Selecione o detalhamento");
+    updateResponsibleAndStatus(form);
   });
 
   nature.addEventListener("change", () => {
@@ -627,14 +722,25 @@ function bindCascadeFields() {
   });
 }
 
+function updateResponsibleAndStatus(form) {
+  const responsible = form.elements.responsible;
+  const status = form.elements.status;
+  const order = state.orders.find((item) => item.id === form.dataset.id);
+  const nextResponsible = responsibleNameForArea(form.elements.area.value);
+  responsible.value = nextResponsible;
+  const mayChange = canChangeStatus(order || { area: form.elements.area.value, responsible: nextResponsible });
+  status.disabled = !mayChange;
+}
+
 function fillSelect(select, options, placeholder, selected = "") {
   select.innerHTML = `<option value="">${escapeHtml(placeholder)}</option>${unique([selected, ...options]).filter(Boolean).map((option) => `<option value="${escapeHtml(option)}" ${option === selected ? "selected" : ""}>${escapeHtml(option)}</option>`).join("")}`;
 }
 
-function saveOrder(event) {
+async function saveOrder(event) {
   event.preventDefault();
   const form = event.currentTarget;
-  const data = Object.fromEntries(new FormData(form).entries());
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
   const existingId = form.dataset.id;
   const previous = state.orders.find((order) => order.id === existingId);
   const vehicle = state.vehicles.find((item) => item.plate === data.vehicle);
@@ -653,13 +759,13 @@ function saveOrder(event) {
     observation: data.observation,
     policeReport: data.policeReport,
     occurredAt: data.occurredAt ? new Date(data.occurredAt).toISOString() : "",
-    responsible: data.responsible,
+    responsible: responsibleNameForArea(data.area) || data.responsible,
     driver: data.driver,
     vehicle: data.vehicle,
     vehicleModel: vehicle?.model || "",
     route: data.route,
-    status: data.status,
-    attachments: data.attachments.split(",").map((item) => item.trim()).filter(Boolean),
+    status: canChangeStatus(previous || { area: data.area, responsible: responsibleNameForArea(data.area) }) ? data.status : (previous?.status || "Aberta"),
+    attachments: [...normalizeAttachments(previous?.attachments), ...(await filesToAttachments(formData.getAll("attachments")))],
   };
 
   if (previous) {
@@ -715,6 +821,10 @@ function openOrder(id) {
           <p><strong>Motorista:</strong> ${escapeHtml(order.driver || "Não informado")}</p>
           <p><strong>Veículo:</strong> ${escapeHtml(order.vehicle || "Não informado")} ${order.vehicleModel ? `· ${escapeHtml(order.vehicleModel)}` : ""}</p>
           <p><strong>Rota:</strong> ${escapeHtml(order.route || "Não informada")} ${route?.link ? `<a href="${escapeHtml(route.link)}" target="_blank" rel="noreferrer">Abrir mapa</a>` : ""}</p>
+        </div>
+        <div class="card section">
+          <h3>Anexos</h3>
+          ${attachmentsListHtml(order.attachments)}
         </div>
         <div class="card section">
           <h3>Mensagens internas</h3>
@@ -843,27 +953,43 @@ function renderCrudTable() {
 }
 
 function usersHtml() {
+  const areas = unique(state.logistics.map((item) => item.area));
   return `
     ${headerHtml("Usuários", "Cada usuário pertence a um único estabelecimento. Apenas administradores podem alterar esse vínculo.")}
-    <section class="card section">
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Estabelecimento vinculado</th></tr></thead>
-          <tbody>
-            ${state.users.map((user) => `
-              <tr>
-                <td>${escapeHtml(user.name)}</td>
-                <td>${escapeHtml(user.email)}</td>
-                <td>${escapeHtml(user.role)}</td>
-                <td>
-                  ${isAdmin()
-                    ? selectField(`user-unit-${user.id}`, state.units.filter((item) => item.active).map((item) => item.name), user.unit, "Selecione o estabelecimento")
-                    : escapeHtml(user.unit || "Sem estabelecimento")}
-                </td>
-              </tr>
-            `).join("")}
-          </tbody>
-        </table>
+    <section class="grid two-col">
+      <div class="card section">
+        <h3>Vínculo por estabelecimento</h3>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Nome</th><th>E-mail</th><th>Perfil</th><th>Estabelecimento vinculado</th></tr></thead>
+            <tbody>
+              ${state.users.map((user) => `
+                <tr>
+                  <td>${escapeHtml(user.name)}</td>
+                  <td>${escapeHtml(user.email)}</td>
+                  <td>${escapeHtml(user.role)}</td>
+                  <td>
+                    ${isAdmin()
+                      ? selectField(`user-unit-${user.id}`, state.units.filter((item) => item.active).map((item) => item.name), user.unit, "Selecione o estabelecimento")
+                      : escapeHtml(user.unit || "Sem estabelecimento")}
+                  </td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card section">
+        <h3>Responsável por área de solicitação</h3>
+        <div class="grid">
+          ${areas.map((area) => `
+            <label>${escapeHtml(area)}
+              ${isAdmin()
+                ? selectField(`area-responsible-${areaKey(area)}`, state.users.map((user) => user.email), state.areaResponsibles?.[area] || "", "Selecione o responsável")
+                : `<input value="${escapeHtml(responsibleUserForArea(area)?.name || "Sem responsável")}" readonly />`}
+            </label>
+          `).join("")}
+        </div>
       </div>
     </section>
   `;
@@ -877,6 +1003,12 @@ function bindUsersEvents() {
       if (state.session.id === user.id) state.session.unit = user.unit;
       saveState();
       renderShell();
+    });
+  });
+  unique(state.logistics.map((item) => item.area)).forEach((area) => {
+    document.querySelector(`[name="area-responsible-${areaKey(area)}"]`)?.addEventListener("change", (event) => {
+      state.areaResponsibles[area] = event.currentTarget.value;
+      saveState();
     });
   });
 }

@@ -24,6 +24,9 @@ Senha para todos: `admin123`
 - Criacao e edicao de OS.
 - Estabelecimento vinculado ao usuario, com alteracao permitida apenas ao administrador.
 - Selecao em cascata baseada no CSV de logistica: area de solicitacao filtra natureza, natureza filtra tipo, tipo filtra descricao e descricao filtra detalhamento.
+- Responsavel definido automaticamente pela area de solicitacao, com cadastro na tela Usuarios.
+- Status bloqueado para solicitantes; apenas administrador ou responsavel da OS pode alterar.
+- Upload de anexos no formulario de OS para imagens, PDFs, documentos, planilhas e outros arquivos.
 - Status de OS e historico de alteracoes.
 - Mensagens internas por OS.
 - Cadastros de unidades, logistica, rotas, veiculos, motoristas e usuarios.
