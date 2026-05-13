@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DIRLOGISTICA | Ordens de Serviço</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="app"></main>
+
+    <template id="login-template">
+      <section class="login-shell">
+        <div class="brand-panel">
+          <img src="assets/images/logo-pmu-semed.png" alt="Prefeitura Municipal de Uberaba SEMED" class="brand-logo" />
+          <span class="eyebrow">DIRLOGISTICA</span>
+          <h1>Gestão de Ordens de Serviço</h1>
+          <p>Controle de solicitações, unidades, rotas, veículos, motoristas e acompanhamento operacional em um só lugar.</p>
+        </div>
+        <form class="login-card" id="login-form">
+          <h2>Acessar sistema</h2>
+          <label>
+            E-mail
+            <input name="email" type="email" value="admin@dirlogistica.local" required />
+          </label>
+          <label>
+            Senha
+            <input name="password" type="password" value="admin123" required />
+          </label>
+          <button type="submit">Entrar</button>
+          <p class="hint">Usuários de demonstração: admin, solicitante, tecnico, logistica ou gestor com senha <strong>admin123</strong>.</p>
+        </form>
+      </section>
+    </template>
+
+    <script src="assets/seed-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
