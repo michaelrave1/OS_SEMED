@@ -149,7 +149,7 @@ work_orders 1---N attachments
 - Perfis: Administrador, Solicitante, Responsável/Técnico, Logística e Gestor/Consulta.
 - Abertura de OS com ID único e data automática.
 - Estabelecimento vinculado ao usuário. Cada usuário pertence a uma única unidade e somente administradores podem alterar esse vínculo.
-- Listas dependentes de logística em cascata: área filtra natureza, natureza filtra tipo e tipo filtra descrição.
+- Listas dependentes de logística em cascata com base no CSV `LOGISTICA - LOGISTICA.csv`: área filtra natureza, natureza filtra tipo, tipo filtra descrição e descrição filtra detalhamento.
 - Atribuição de responsável, motorista, veículo e rota.
 - Alteração de status com histórico.
 - Mensagens internas por OS.

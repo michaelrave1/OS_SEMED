@@ -1,4 +1,5 @@
 const STORAGE_KEY = "dirlogistica-os-state-v1";
+const DATA_VERSION = "csv-logistica-v1";
 
 const statuses = [
   "Aberta",
@@ -43,6 +44,7 @@ function loadState() {
 
   const seed = window.DIRLOGISTICA_SEED || {};
   const initial = {
+    dataVersion: DATA_VERSION,
     session: null,
     users: demoUsers,
     units: (seed.UNIDADES || []).map((row) => ({
@@ -53,17 +55,7 @@ function loadState() {
       latlong: row.LATLONG || "",
       active: true,
     })),
-    logistics: (seed.LOGISTICA || []).map((row) => ({
-      id: row["Row ID"],
-      area: row["Área de solicitação"] || "",
-      nature: row["Natureza da atividade"] || "",
-      type: row["Tipo de atividade"] || "",
-      description: row["Descrição da atividade"] || "",
-      detail: row["Detalhamento da atividade"] || "",
-      options: row.OPCOES || "",
-      reminder: row.lembrete || "",
-      active: true,
-    })),
+    logistics: mapLogisticsRows(seed.LOGISTICA || []),
     routes: (seed.ROTAS || []).map((row) => ({
       id: row["Row ID"],
       routeId: row["ID ROTA"] || "",
@@ -131,6 +123,11 @@ function loadState() {
 }
 
 function normalizeState(next) {
+  const seed = window.DIRLOGISTICA_SEED || {};
+  if (next.dataVersion !== DATA_VERSION && seed.LOGISTICA?.length) {
+    next.logistics = mapLogisticsRows(seed.LOGISTICA);
+    next.dataVersion = DATA_VERSION;
+  }
   next.users = (next.users || demoUsers).map((user) => ({
     ...user,
     unit: user.unit || "",
@@ -142,6 +139,20 @@ function normalizeState(next) {
   assignDefaultUserUnits(next);
   saveState(next);
   return next;
+}
+
+function mapLogisticsRows(rows) {
+  return rows.map((row) => ({
+    id: row["Row ID"],
+    area: row["Área de solicitação"] || "",
+    nature: row["Natureza da atividade"] || "",
+    type: row["Tipo de atividade"] || "",
+    description: row["Descrição da atividade"] || "",
+    detail: row["Detalhamento da atividade"] || "",
+    options: row.OPCOES || "",
+    reminder: row.lembrete || "",
+    active: true,
+  }));
 }
 
 function assignDefaultUserUnits(next) {
@@ -462,6 +473,7 @@ function orderFormHtml(order = null) {
   const selectedNature = order?.nature || "";
   const selectedType = order?.activityType || "";
   const selectedDescription = order?.description || "";
+  const selectedDetail = order?.detail || "";
   return `
     ${headerHtml(title, subtitle)}
     <form class="card section form-grid" id="order-form" data-id="${order?.id || ""}">
@@ -477,6 +489,9 @@ function orderFormHtml(order = null) {
       <label class="span-2">Descrição da atividade
         ${selectField("description", cascadeDescriptions(selectedArea, selectedNature, selectedType), selectedDescription, "Selecione a descrição")}
       </label>
+      <label>Detalhamento da atividade
+        ${selectField("detail", cascadeDetails(selectedArea, selectedNature, selectedType, selectedDescription), selectedDetail, "Selecione o detalhamento")}
+      </label>
       <label>Estabelecimento
         ${selectField("unit", unitOptions, selectedUnit, "Selecione o estabelecimento", !isAdmin())}
       </label>
@@ -488,9 +503,6 @@ function orderFormHtml(order = null) {
       </label>
       <label>Possui material?
         ${selectField("hasMaterial", ["Não informado", "Sim", "Não"], order?.hasMaterial || "Não informado")}
-      </label>
-      <label class="span-3">Detalhamento
-        <textarea name="detail" placeholder="Detalhe a demanda">${escapeHtml(order?.detail || "")}</textarea>
       </label>
       <label class="span-3">Observação
         <textarea name="observation" placeholder="Observações internas">${escapeHtml(order?.observation || "")}</textarea>
@@ -532,8 +544,11 @@ function selectField(name, options, selected = "", placeholder = "Não informado
   `;
 }
 
-function logisticsMatches(item, area = "", nature = "", type = "") {
-  return (!area || item.area === area) && (!nature || item.nature === nature) && (!type || item.type === type);
+function logisticsMatches(item, area = "", nature = "", type = "", description = "") {
+  return (!area || item.area === area)
+    && (!nature || item.nature === nature)
+    && (!type || item.type === type)
+    && (!description || item.description === description);
 }
 
 function cascadeNatures(area) {
@@ -546,6 +561,10 @@ function cascadeTypes(area, nature) {
 
 function cascadeDescriptions(area, nature, type) {
   return unique(state.logistics.filter((item) => logisticsMatches(item, area, nature, type)).map((item) => item.description));
+}
+
+function cascadeDetails(area, nature, type, description) {
+  return unique(state.logistics.filter((item) => logisticsMatches(item, area, nature, type, description)).map((item) => item.detail));
 }
 
 function toInputDate(value) {
@@ -582,20 +601,29 @@ function bindCascadeFields() {
   const nature = form.elements.nature;
   const type = form.elements.activityType;
   const description = form.elements.description;
+  const detail = form.elements.detail;
 
   area.addEventListener("change", () => {
     fillSelect(nature, cascadeNatures(area.value), "Selecione a natureza");
     fillSelect(type, [], "Selecione o tipo");
     fillSelect(description, [], "Selecione a descrição");
+    fillSelect(detail, [], "Selecione o detalhamento");
   });
 
   nature.addEventListener("change", () => {
     fillSelect(type, cascadeTypes(area.value, nature.value), "Selecione o tipo");
     fillSelect(description, [], "Selecione a descrição");
+    fillSelect(detail, [], "Selecione o detalhamento");
   });
 
   type.addEventListener("change", () => {
-    fillSelect(description, cascadeDescriptions(area.value, nature.value, type.value), "Selecione a descrição");
+    const descriptions = cascadeDescriptions(area.value, nature.value, type.value);
+    fillSelect(description, descriptions, "Selecione a descrição");
+    fillSelect(detail, descriptions.length ? [] : cascadeDetails(area.value, nature.value, type.value, ""), "Selecione o detalhamento");
+  });
+
+  description.addEventListener("change", () => {
+    fillSelect(detail, cascadeDetails(area.value, nature.value, type.value, description.value), "Selecione o detalhamento");
   });
 }
 

@@ -1,0 +1,340 @@
+Row ID,Área de solicitação,Natureza da atividade,Tipo de atividade,Descrição da atividade,Detalhamento da atividade,OPCOES,lembrete
+LTpkgGUFTY4Xmz8Ezn3zif,ALIMENTAÇÃO ESCOLAR,Visita técnica alimentação escolar,Orientações,,,Obs.,
+wL-MsHqTPi4jmsrPlQxNBa,ALIMENTAÇÃO ESCOLAR,Visita técnica alimentação escolar,Verificação de insumos,,,Obs.,
+T3CMUdpOys46Q0JHhVXFY4,ALIMENTAÇÃO ESCOLAR,Visita técnica alimentação escolar,Verificação de equipamentos,,,Obs.,
+9eLziAKtRy4veSdwtFCi84,ALIMENTAÇÃO ESCOLAR,Visita técnica alimentação escolar,Verificação do espaço físico da cozinha,,,Obs.,
+W_2eTC0m3a4UmlEIy1Jl-5,ALIMENTAÇÃO ESCOLAR,Visita técnica alimentação escolar,Verificação do quantitativo de refeições,,,Obs.,
+69cOrZlnno4Oqlp46gN8Qc,ALIMENTAÇÃO ESCOLAR,Visita técnica alimentação escolar,Verificação geral dos serviços de alimentação escolar,,,Obs.,
+QFilvsp6n841eYl1cOL6Kc,ALIMENTAÇÃO ESCOLAR,Envio de laudo (médico ou nutricionista),Intolerância à lactose,,,Obs.,
+HScux-iQkv43iweje1aD_d,ALIMENTAÇÃO ESCOLAR,Envio de laudo (médico ou nutricionista),Alergia à proteína do leite vaca (APLV),,,Obs.,
+wNQ_ZjKFy34Lq4AT5LFz6a,ALIMENTAÇÃO ESCOLAR,Envio de laudo (médico ou nutricionista),"Doença celíaca (glúten, trigo etc.)",,,Obs.,
+Cbro5Dzryj42ykzc_TjT1b,ALIMENTAÇÃO ESCOLAR,Envio de laudo (médico ou nutricionista),Seletividade alimentar (educando com TEA),,,Obs.,
+08KTAtcJRs4QEiIU22L2P4,ALIMENTAÇÃO ESCOLAR,Envio de laudo (médico ou nutricionista),Seletividade alimentar (educando sem TEA),,,Obs.,
+aRxmXrVUZj4hQW_YLbr0B3,ALIMENTAÇÃO ESCOLAR,Solicitação de refeições,Encaminhar solicitação quinzenal,,,Obs.,
+gzOPHP7Yyu4umjOkiXQEGc,ALIMENTAÇÃO ESCOLAR,Solicitação de refeições,Aumento da quantidade de refeições,,,Obs.,
+-3Ld6W0OZM4w6heknTBxx0,ALIMENTAÇÃO ESCOLAR,Solicitação de refeições,Diminuição da quantidade de refeições,,,Obs.,
+YRKXz2Hoer4-IZabXaC9yd,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de dia,Cardápios da Educação Infantil,Berçário (CARD 1),Obs.,
+FaHE_MookH4v6bBbgnoQT7,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de dia,Cardápios da Educação Infantil,Integral (CARD 2 e CARD 3),Obs.,
+i7a8pir0rd41YKvblTA5o5,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de dia,Cardápios da Educação Infantil,Parcial matutino (CARD 2 e CARD 3),Obs.,
+Xcw6byXKXD4bA05Oc25Zl8,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de dia,Cardápios da Educação Infantil,Parcial vespertino (CARD 2 e CARD 3),Obs.,
+kpILTGFVIx4lq6vCy3BDWf,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de dia,Cardápios da Educação Infantil,Fruta (CARD 8),Obs.,
+9vYQ5Vlcjt4g6LD_Qvel41,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de dia,Cardápios do Ensino Fundamental,Integral - desjejum (CARD 4),Obs.,
+0mNOwpkqW64wYhjIQyA8f1,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de dia,Cardápios do Ensino Fundamental,Integral - refeição (CARD 5),Obs.,
+wCw8flNqqy4SaEWSE9AVm1,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de dia,Cardápios do Ensino Fundamental,Integral - lanche da tarde (Grupos de Liderança) (CARD 6),Obs.,
+aiWNGOXTie4m2b8Q4uBIG2,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de dia,Cardápios do Ensino Fundamental,Parcial matutino - refeição (CARD 5),Obs.,
+fU-xOJTGyU4Zyato4N_1B0,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de dia,Cardápios do Ensino Fundamental,Parcial vespertino - refeição (CARD 5),Obs.,
+5nZGSIFLkB4DMHWVZLLtgd,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de dia,Cardápios do Ensino Fundamental,Fruta (CARD 8),Obs.,
+A-NOL7nVlq4QMthF871x6c,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de dia,Cadápios da EJA,Refeição (CARD 7),Obs.,
+0lgCH7pkwx4jIaqOW5UeC3,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de dia,Cadápios da EJA,Fruta (CARD 8),Obs.,
+2a1DPtVUx14Vywzj6XXOK9,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de horário de refeição,Cardápios da Educação Infantil,Berçário (CARD 1),Obs.,
+zH90gY28bv4dYt-W3OjsQf,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de horário de refeição,Cardápios da Educação Infantil,Integral (CARD 2 e CARD 3),Obs.,
+Ynpbetrxsv4HuWkKQnF7cc,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de horário de refeição,Cardápios da Educação Infantil,Parcial matutino (CARD 2 e CARD 3),Obs.,
+l-WtTN3AuX4LehAT9TVqT1,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de horário de refeição,Cardápios da Educação Infantil,Parcial vespertino (CARD 2 e CARD 3),Obs.,
+G3wlNgVQhb4G2PwyPc5x85,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de horário de refeição,Cardápios da Educação Infantil,Fruta (CARD 8),Obs.,
+n-sSpz2L4T4kMG7rIN3h-2,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de horário de refeição,Cardápios do Ensino Fundamental,Integral - desjejum (CARD 4),Obs.,
+6jXFNhPM1q46iYB4RS3Cgf,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de horário de refeição,Cardápios do Ensino Fundamental,Integral - refeição (CARD 5),Obs.,
+K7qMpPb7aM4QiSNeocVch7,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de horário de refeição,Cardápios do Ensino Fundamental,Integral - lanche da tarde (Grupos de Liderança) (CARD 6),Obs.,
+AkKaa_uYIw4fieq5N5rhw6,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de horário de refeição,Cardápios do Ensino Fundamental,Parcial matutino - refeição (CARD 5),Obs.,
+8VvIDlvs974WUEmDY-DQt2,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de horário de refeição,Cardápios do Ensino Fundamental,Parcial vespertino - refeição (CARD 5),Obs.,
+LEk_6izEHS4e2k27JkCoc0,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de horário de refeição,Cardápios do Ensino Fundamental,Fruta (CARD 8),Obs.,
+7RIoxIFATP44Qf-U_TSqP2,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de horário de refeição,Cadápios da EJA,Refeição (CARD 7),Obs.,
+dqZPag3Vra4zuc0sIp4PNc,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração de horário de refeição,Cadápios da EJA,Fruta (CARD 8),Obs.,
+x0ecj4XIjg4EIZrOmhdka5,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração da refeição,Cardápios da Educação Infantil,Berçário (CARD 1),Obs.,
+3MzduADv2s4gat6xOdYKPd,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração da refeição,Cardápios da Educação Infantil,Integral (CARD 2 e CARD 3),Obs.,
+4EaSj1HAF84VIyO2RF_EA9,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração da refeição,Cardápios da Educação Infantil,Parcial matutino (CARD 2 e CARD 3),Obs.,
+iPxntpGbi-4OMxRRtaOZ41,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração da refeição,Cardápios da Educação Infantil,Parcial vespertino (CARD 2 e CARD 3),Obs.,
+nXgsIhVWMr4JuQFZ8QxE1e,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração da refeição,Cardápios da Educação Infantil,Fruta (CARD 8),Obs.,
+p5830xUIjO4PecZC4aFKg9,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração da refeição,Cardápios do Ensino Fundamental,Integral - desjejum (CARD 4),Obs.,
+xrGf5L7N1v49QlXr_93RHb,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração da refeição,Cardápios do Ensino Fundamental,Integral - refeição (CARD 5),Obs.,
+1vH36dd0fi4RE69YyogyV2,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração da refeição,Cardápios do Ensino Fundamental,Integral - lanche da tarde (Grupos de Liderança) (CARD 6),Obs.,
+r2o6mE6bBf4haA-Sn13147,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração da refeição,Cardápios do Ensino Fundamental,Parcial matutino - refeição (CARD 5),Obs.,
+c410QSt21M456a0U6e0_Ta,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração da refeição,Cardápios do Ensino Fundamental,Parcial vespertino - refeição (CARD 5),Obs.,
+P_B3f-U-MW4ZUOkxtGAF89,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração da refeição,Cardápios do Ensino Fundamental,Fruta (CARD 8),Obs.,
+AyHwWsxUSc4VixW6ngHko4,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração da refeição,Cadápios da EJA,Refeição (CARD 7),Obs.,
+oFhHL67b9a4q2rCqrC5PS1,ALIMENTAÇÃO ESCOLAR,Alteração de cardápio,Alteração da refeição,Cadápios da EJA,Fruta (CARD 8),Obs.,
+BlxmUlc0RB4SAYrrUAWWs0,ALIMENTAÇÃO ESCOLAR,Envio de documentos,Laudo de higienização da caixa d'água,,,Obs.,
+nj3AbuU60i4LeFhoju7kRa,ALIMENTAÇÃO ESCOLAR,Envio de documentos,Laudo de higienização da caixa de gordura,,,Obs.,
+KrOKlIDa2c4he_vqdVELH8,ALIMENTAÇÃO ESCOLAR,Envio de documentos,Alvará sanitário,,,Obs.,
+SbtBBw05Mr4TyXhZdC5bBe,ALIMENTAÇÃO ESCOLAR,Envio de documentos,Relatórios de atividades de Educação Alimentar e Nutricional (EAN),"Educação Infantil (Projeto - Alimentando histórias, nutrindo crianças)",,Obs.,
+2pwzHUvxqD4PY_9eE5oTd8,ALIMENTAÇÃO ESCOLAR,Envio de documentos,Relatórios de atividades de Educação Alimentar e Nutricional (EAN),Ensino Fundamental (Agentes do Meio Ambiente),,Obs.,
+itBi5f6Ue_4fE-s6uo3tQe,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Acidente de trabalho,Relacionado a equipamento da cozinha,Obs.,
+G9-pe5VS184uqbfU3tYVEc,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Acidente de trabalho,Relacionado ao espaço físico da cozinha,Obs.,
+AlwNTZvkuD40uXvGf6bT98,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Acidente de trabalho,Relacionado ao espaço físico da unidade de ensino,Obs.,
+q19IySY-jr4UyUhiUNxttb,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Desentendimento/discussão,Com a equipe gestora,Obs.,
+5Xua8GYt1t4ZueXc2x5wY6,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Desentendimento/discussão,Com servidor(es) da unidade,Obs.,
+-LtFkRO39W4CydnA5NrrY9,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Desentendimento/discussão,Com educando(s),Obs.,
+L4pt1mLIno45ELKIPc9q-9,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Desatendimento à legislação ou às orientações da SEMED,Uniforme,Obs.,
+Gv-HP1HprJ45yVshBjFwKb,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Desatendimento à legislação ou às orientações da SEMED,Per capita (quantidade de alimento produzida),Obs.,
+iwIHa8001_4DMKt-nyBLj6,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Desatendimento à legislação ou às orientações da SEMED,Porcionamento (quantidade de alimento servida),Obs.,
+clVxyR79J_4sazQxCDxch6,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Desatendimento à legislação ou às orientações da SEMED,Modo de pManutenção das refeições,Obs.,
+8LHXHSW2r34ceDWlmVAQ-1,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Desatendimento à legislação ou às orientações da SEMED,Modo de servir às refeições,Obs.,
+HDy_Mrs7c148meBUKlSv50,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Desatendimento à legislação ou às orientações da SEMED,Modo de acomodação do lixo,Obs.,
+hK1HGs8JBX472Ivd4b9kv1,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Desatendimento à legislação ou às orientações da SEMED,Higiene pessoal e asseio,Obs.,
+ZmXLenPCau4IIAim_ewhD2,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Desatendimento à legislação ou às orientações da SEMED,Limpeza dos equipamentos e utensílios,Obs.,
+kXFwfpD-Wz4beKOmBsSmM9,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Desatendimento à legislação ou às orientações da SEMED,Limpeza do espaço físico da cozinha,Obs.,
+cZRNwCr77b43epUddGAvRf,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com cozinheira(s),Desatendimento à legislação ou às orientações da SEMED,Permissão indevida para terceiros se alimentarem,Obs.,
+7LzwGEF6v943ep4R-RfKi8,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com servidor(es) da unidade,Interferência nos serviços de alimentação escolar,,Obs.,
+ttlUiCIcGC4EqrhPsATJ4c,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com servidor(es) da unidade,Alimentação indevida ou desautorizada,,Obs.,
+VPyCNf73Hb4DuFb_HCNM2d,ALIMENTAÇÃO ESCOLAR,Ocorrências,Com educando(s),Interferência nos serviços de alimentação escolar,,Obs.,
+O6XPH5rILK4FYRCZtT6KK2,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Visita Técnica infraestrutura,Serviços estruturais (eng. civil),,,Obs.,
+iXTqJx_7gM4cUFfpN49Wo3,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Visita Técnica infraestrutura,Serviços elétricos (eletricista),,,Obs.,
+ZSnv9S-biD4LuCPdkIFTY2,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Visita Técnica infraestrutura,Serviços hidráulicos (encanador),,,Obs.,
+SFBzDeH6Uo4QyqtSwYDXCe,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Visita Técnica infraestrutura,Modificação de cômodos e espaços (arquiteto),,,Obs.,
+5VD73WrBgZ4saqm4Ow2BC1,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Área verde,Capina/limpeza de terreno,,,Obs.,
+SzXJB9Ct4d4qa1j5y6E1b4,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Área verde,Roçada de grama,,,Obs.,
+uqiD2HiBuW4uIcbErbqA46,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Área verde,Poda de árvores e outros espécimes arbóreos,,,Obs.,
+3INY7QJx6K44ESVBWhc4Wf,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Telhado,Troca de telhas,,Obs.,
+Mg-dotGVfZ4s6wW3a_yRFe,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Telhado,Estrutural,,Obs.,
+VEEwivqMDw4KAUroxYqzn2,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Salas e corredores,Manutenção no teto (laje),,Obs.,
+ct23Tgw3fH4zIPxgEilBD6,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Salas e corredores,Manutenção em forro de teto,,Obs.,
+Ktv7enx1rw46ap0j3PdrAb,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Salas e corredores,Manutenção em parede (interno),,Obs.,
+4PYVycvDm34GanNXZn2Dg1,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Salas e corredores,Manutenção em esquadrias (portas e janelas),,Obs.,
+N9TXp4fBr-4bYM45ZMiBY8,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Salas e corredores,Manutenção em piso,,Obs.,
+-XHjNSPj8S4uqSfv4gYp9e,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Salas e corredores,Instalação em geral,Quadros (quadro branco etc.),Obs.,
+-b_aDKTyJN4XiOGKvF-iX9,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Salas e corredores,Instalação em geral,"Placas (AVCB, placas de inauguração)",Obs.,
+V7Z6um3jEp42ytkw3JdJ14,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Salas e corredores,Instalação em geral,Suportes,Obs.,
+CbBsDq9Z3R4vYh1wwqgQ35,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Salas e corredores,Instalação em geral,Telas,Obs.,
+qLvUERhfLW4GeQ69jUpMlb,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Banheiro,Manutenção no teto (laje),,Obs.,
+h-7xNmLB224eIzuypG2ek0,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Banheiro,Manutenção em forro de teto,,Obs.,
+D1O-MrQyJv4i2dHz6Y9452,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Banheiro,Manutenção em parede (azulejos),,Obs.,
+MGJp9SVeX94ce3nHUCn1jc,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Banheiro,Manutenção em esquadrias (portas e janelas),,Obs.,
+19YfpRUDpO4pI6mPDUtbK3,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Banheiro,Manutenção em piso,,Obs.,
+CHUjCq7YW94AaaL4C7QiF3,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Cozinha,Manutenção no teto (laje),,Obs.,
+xNZeUivONz4qiw2rpPx4M8,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Cozinha,Manutenção em forro de teto,,Obs.,
+RWjFpFNCtP4dI8ndl2K4v3,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Cozinha,Manutenção em parede (azulejos),,Obs.,
+u-NW6rMOKh4HUTDnrJqOg0,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Cozinha,"Manutenção em esquadrias (portas, janelas, telas mosquiteiros)",,Obs.,
+9JhIHAy6Z34QIyJ60PbR-e,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Cozinha,Manutenção em piso,,Obs.,
+i02mZ1--vl4mIrcS5fJ3h2,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Áreas externas,Manutenção em platibanda e beiral de laje,,Obs.,
+53daKkdNdO4faN1UD280M4,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Áreas externas,Manutenção em toldos,,Obs.,
+E9LDkPq0HJ4vaCSKTdCnL1,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Áreas externas,Manutenção em muro,,Obs.,
+hQ5Fkd9dMX4yALXDFuWuFf,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Áreas externas,"Manutenção em esquadrias externas (portão de entrada, grades, gradis etc.)",,Obs.,
+7IUMdL0ub34sMfEqTtm4M9,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Áreas externas,Manutenção em piso externo,,Obs.,
+SSeGf0AE244REme7kcSX1d,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Áreas externas,Manutenção na central GLP,,Obs.,
+XVfKpIdXDW4TiN9aewwZD0,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Áreas externas,Manutenção/Instalação em parquinho,,Obs.,
+A6Wel99pjL4Am3pnlBj181,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Quadra,Manutenção no telhado,,Obs.,
+bgczdZ_l6b4MU5a6DSsSO1,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Quadra,Manutenção estrutural,,Obs.,
+Ypdwg9nr6O4Ruj-_EzCU99,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Quadra,Manutenção em alambrado ou tela/rede de cobertura,,Obs.,
+pTHSp_hyMU446QhBAiSp-b,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Quadra,Manutenção em arquibancada,,Obs.,
+cY5quWCTv24cIXF6saWCI8,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Quadra,"Manutenção em equipamentos esportivos (gol, cesta de basquete, poste de rede de vôlei etc.)",,Obs.,
+IymE_l8Ybc442cnz4FaDp4,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços civis (eng. civil),Quadra,Manutenção em piso/rampa,,Obs.,
+YLdxvLeLp542qreR_vi2D4,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços de pintura,Interna,,,Obs.,
+JBSPeY7Aeh4Qadbu6glH07,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços de pintura,Externa,,,Obs.,
+br6XeJ1YkD49Aay4cK0cQ9,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços de pintura,"Esquadrias (portas, portões, janelas etc.)",,,Obs.,
+-btnZa3bmJ4XM4lg9XS6X1,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços de pintura,Parquinho,,,Obs.,
+ZqN44FqG0f4Ped7tZt51F2,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços de pintura,Quadra,,,Obs.,
+lNyJ-EXSmL4yMV50AqcnN7,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços elétricos,Falta de energia,,,Obs.,
+ldzW8Qhm_T4ByvNBFeIqua,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços elétricos,Instalações elétricas (quadro de energia),,,Obs.,
+4YrgxN05xs4qutK7DDChCc,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços elétricos,Chuveiro,Manutenção,,Obs.,
+aWvg5Te0JX4PaoqH1AAkkd,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços elétricos,Chuveiro,Instalação,,Obs.,
+2YGVijrctX4QUph1ftmt0a,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços elétricos,Ventilador,Manutenção,,Obs.,
+-1PgZtSAkI4yu0Isd4CPq4,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços elétricos,Ventilador,Instalação,,Obs.,
+T7mfdXra-T4DYk02EeKLld,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços elétricos,Tomada,Manutenção,,Obs.,
+ksD8ryl52c4X6tpzw6xjm8,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços elétricos,Tomada,Instalação,,Obs.,
+5WEZ3stWOD4KAKhNlTPEz9,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços elétricos,Interruptores,Manutenção,,Obs.,
+4NSt74sa-74cYMMdXynqA1,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços elétricos,Interruptores,Instalação,,Obs.,
+UvLCjEn6eR4Jif-3R0LmC7,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços elétricos,Lâmpadas e luminárias,Manutenção,,Obs.,
+kVZUCan0m_4Fy5gd7HlVla,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços elétricos,Lâmpadas e luminárias,Instalação,,Obs.,
+oi4EldlJaT4c6t_sBxi5kc,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços elétricos,Lâmpadas e luminárias,Troca,,Obs.,
+r5tMvJm85x4CapDuF76VP1,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Vazamentos,,,Obs.,
+C0qRW-SQ1P4oYcASlf2Ap0,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Desentupimento,,,Obs.,
+QxW5ar3wAc4E2jqMlkFD32,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Falta d'água,,,Obs.,
+TI0ei-maLX4uic0cL8VH1c,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),"Torneiras, pias e tanques",Instalação,,Obs.,
+BFIALO6dhD4YyF9KfeLoR1,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),"Torneiras, pias e tanques",Troca,,Obs.,
+OzbVVj4xZM4OmCZ4FaBXqa,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),"Torneiras, pias e tanques",Manutenção,,Obs.,
+r_LIHe4chT4XyN5O43sJAa,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),"Torneiras, pias e tanques",Troca/manutenção de sifão,,Obs.,
+HQ7se7ri_A49mykt5orry0,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Bebedouro,Instalação,,Obs.,
+QZR7EGH1CE4rA5ysd53eH5,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Bebedouro,Troca,,Obs.,
+J8EiOwA3P94b6YuJfhqw61,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Bebedouro,Manutenção,,Obs.,
+di0HQrB1os45qwRYGwQZp3,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Bomba d'água,Instalação,,Obs.,
+OVGyEgIG-f4uIZHi5P3GI1,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Bomba d'água,Troca,,Obs.,
+65wf4QOvnd47YUXjMUVrS9,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Bomba d'água,Manutenção,,Obs.,
+IQVM55fNR24hm8ic8wGvE7,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Registro,Instalação,,Obs.,
+m1ikdL1TYD41ABq7mVUh92,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Registro,Troca,,Obs.,
+T8B3VKmuJ04AqOKotqf9Fd,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Registro,Manutenção,,Obs.,
+khvHK8W31Z4GEdu080aUK9,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Registro,Troca do registro sanitário,,Obs.,
+726Nvl7Epz43uD-GLppqs9,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Caixa d'água,Manutenção de caixa d'água,,Obs.,
+_1Ww-NY0pg48u5lDQPRdhd,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Caixa d'água,Troca de caixa d'água,,Obs.,
+GPHLklaVmK4yuzc98l84Z4,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Caixa d'água,Instalação de boia,,Obs.,
+K3Ho9CsrSH4NyUTOgvGcdc,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Caixa d'água,Troca de boia,,Obs.,
+GKX6Jqh1Z84ZQSlikX1UFe,MANUTENÇÃO E INFRAESTRUTURA ESCOLAR,Serviços hidráulicos (encanador),Caixa d'água,Manutenção de boia,,Obs.,
+djmS70fhUp4pYCZOw6kco7,GESTÃO DE PESSOAL,Provimento de pessoal,Abertura de necessidades no quadro de pessoal,,,Obs.,
+BJc_3ztU2k4Pi1wOGSSCA4,GESTÃO DE PESSOAL,Provimento de pessoal,Adequação de Plano de Gestão de Pessoal (PGP),,,Obs.,
+cDlu5NucgO4jupl3kNHGbf,GESTÃO DE PESSOAL,Provimento de pessoal,Autorização de horas-extras,,,Obs.,
+kFSLHzMbBS4KY09Fu28CL8,GESTÃO DE PESSOAL,Provimento de pessoal,Autorização de aulas excedentes,,,Obs.,
+D9F1UAj0Ug4EU-3Yiyte5f,GESTÃO DE PESSOAL,Provimento de pessoal,Encaminhamentos de início de exercício,,,Obs.,
+LXHCQxLs464KMS_sYqU1m4,GESTÃO DE PESSOAL,Provimento de pessoal,Retornos a confirmar,,,Obs.,
+F4Wm5S31EU44yUY5ttPxac,GESTÃO DE PESSOAL,Folha de pagamento,Adequação na agenda dos professores,,,Obs.,
+f-wEDb9jxU4TYgBZtfGoH4,GESTÃO DE PESSOAL,Folha de pagamento,Solicitação de pagamento de diferenças salariais,,,Obs.,
+MrAkO9GW_T4KY4Xcp4Hq_2,GESTÃO DE PESSOAL,Folha de pagamento,Impacto financeiro com o pagamento de pessoal,,,Obs.,
+_mVmXLzseT4zQQkxL6DHW5,GESTÃO DE PESSOAL,Folhas de ponto,Solicitação complementar mensal de folhas de ponto,,,Obs.,
+467GOkjh_w4SM0Hlc0a_F8,GESTÃO DE PESSOAL,Folhas de ponto,Atualização de informações das folhas de ponto,,,Obs.,
+xgE65UmORi46QeeresTvT6,GESTÃO DE PESSOAL,Processos,Formulários de gratificação e promoção na carreira,,,Obs.,
+H9gYi8dNeo4dIF0AW0t634,GESTÃO DE PESSOAL,Ficha cadastral de todos os dados,,,,Obs.,
+2bDyJ9DQl-4HydHCxd6-Ke,GESTÃO DE PESSOAL,Criação de senha de acesso ao contracheque,,,,Obs.,
+OUljndx_1x486evDRuiAx9,GESTÃO DE PESSOAL,Férias regulamentares,,,,Obs.,
+QudkmhCioZ4i2YDiRlR_u4,PATRIMÔNIO,Visita técnica patrimonial,Auxílio na identificação do patrimônio da unidade,,,Obs.,
+QDFDz2b9ja4qERWF2PZH4d,PATRIMÔNIO,Visita técnica patrimonial,Auxílio no registro patrimonial,,,Obs.,
+YVBAziFzfE4Diod3Kln-B9,PATRIMÔNIO,Visita técnica patrimonial,"Consulta sobre depreciação, amortização e exaustão",,,Obs.,
+Nf4VbUJaAb4bayIR4xvfu7,PATRIMÔNIO,Visita técnica patrimonial,Consulta sobre proteção contra deterioração,,,Obs.,
+xYuAIFvot74l6OzILLRip3,PATRIMÔNIO,Visita técnica patrimonial,Consulta sobre meios de manutenção e conservação,,,Obs.,
+T-iRZPrBMp4oAmBaYQSknb,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para educandos,Carteira escolar (mesa e cadeira) - Azul,Obs.,
+PL5paru1E-4JmWO8OG55C9,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para educandos,Carteira escolar (mesa e cadeira) - Verde,Obs.,
+jNXNeBhcX44T2WNaDPansf,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para educandos,Carteira escolar (mesa e cadeira) - Vermelha,Obs.,
+09coZ4u_-k4umIUjKY5wHd,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para educandos,Carteira escolar (mesa e cadeira) - Amarela,Obs.,
+d8FjsUp2ra4uYrWvNNNFc2,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para educandos,Carteira escolar (mesa e cadeira) - Laranja,Obs.,
+_SulKTEgZK4vumUGTDA4Hc,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para educandos,Colchonete,Obs.,
+3XJd_YNX8X4Zu_ou7WR7Od,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para educandos,Refeitório infantil (mesa e cadeiras),Obs.,
+bTjowN3e0m4fiQJlFS_49c,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para educandos,Refeitório adulto (mesa e cadeiras),Obs.,
+obzpPvYGyi4TmTYTmmQGI6,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para professor,Mesa de professor,Obs.,
+RjquOK4_pm44IsR9GkC896,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para professor,"Quadro (branco, para pincel)",Obs.,
+GGqLK8BTVU4CmQvcN3YMg4,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para escritório,Armário - 2 portas,Obs.,
+3BVhusK2Yu4zyu9_WaCNH4,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para escritório,Armário - escaninho,Obs.,
+tPq1oECn8J4LMGoKTg-Hdc,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para escritório,Arquivo - 4 gavetas,Obs.,
+i48iVnLbMl4HAOPHAv5pZ4,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para escritório,Cadeira de escritório (giratória),Obs.,
+9rUM8REgDd4lmDwo9Vvdh5,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para escritório,Mesa - escritório,Obs.,
+zT8jV8fdbB4uqjZf4cDGu9,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Mobiliário para escritório,Mesa - reunião,Obs.,
+GIVpCl10v749q4mYU-IfYc,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Equipamentos,Bebedouro,Obs.,
+iJqqqgHzLt4juaX7dOvPjb,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Equipamentos,Geladeira,Obs.,
+Eb7Jw6gkqu4lMLe445fH2e,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Equipamentos,Purificador de água,Obs.,
+gFRDXxL0874IuuLWpL4pmd,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Equipamentos,Televisão,Obs.,
+nfcXVqxeys4vQgwqkNs_w4,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Equipamentos,Ventilador - parede,Obs.,
+9RnnpEV3Hz4z6-xmac07Uf,PATRIMÔNIO,Movimentação de bens,"Logística de distribuição (reposição, substituição, acréscimo ou empréstimo)",Equipamentos,Ventilador - teto,Obs.,
+k5nw6ANx2U4mmQNuDZeUd7,PATRIMÔNIO,Movimentação de bens,Transferência (mobiliário e equipamentos),Motivo - Fechamento de turma,"Estado - Regular (deteriorado, mas não precisa de manutenção ou reforma)",Obs.,
+DMf8dAyMD24XQIYo7-1xT8,PATRIMÔNIO,Movimentação de bens,Transferência (mobiliário e equipamentos),Motivo - Troca de turma,Estado - Bom (sem marcações de uso visíveis),Obs.,
+cCzqgitkyu42mykOQlVade,PATRIMÔNIO,Movimentação de bens,Transferência (mobiliário e equipamentos),Motivo - Compra de itens novos com recursos da unidade,Estado - Excelente (seminovo),Obs.,
+mMS76cp4sk4Hm20QRQ0awe,PATRIMÔNIO,Movimentação de bens,Logística reversa de distribuição (recolhimento para descarte),Mobiliário,"Motivo/Estado - Bem inservível (imprestável, obsoleto, ocioso ou irrecuperável)",Obs.,"anexar. 
+Motivo/Estado
+Imagem do laudo para descarte
+Valor do orçamento para reparo
+Descrição do(s) bem(s)
+Quantidade"
+jBHOTw_i8R4fyUeJqlkCH9,PATRIMÔNIO,Movimentação de bens,Logística reversa de distribuição (recolhimento para descarte),Mobiliário,"Motivo/Estado - Bem deteriorado (inservível, mas pode ser reparado)",Obs.,"anexar. 
+Motivo/Estado
+Imagem do laudo para descarte
+Valor do orçamento para reparo
+Descrição do(s) bem(s)
+Quantidade"
+GQg-pzmVs54-2SkGUktRza,PATRIMÔNIO,Movimentação de bens,Logística reversa de distribuição (recolhimento para descarte),Equipamentos - Eletromésticos,"Motivo/Estado - Bem inservível (imprestável, obsoleto, ocioso ou irrecuperável)",Obs.,"anexar. 
+Motivo/Estado
+Imagem do laudo para descarte
+Valor do orçamento para reparo
+Descrição do(s) bem(s)
+Quantidade"
+CX65rjiDYg4R6zJbx1FbJc,PATRIMÔNIO,Movimentação de bens,Logística reversa de distribuição (recolhimento para descarte),Equipamentos - Eletromésticos,"Motivo/Estado - Bem deteriorado (inservível, mas pode ser reparado)",Obs.,"anexar. 
+Motivo/Estado
+Imagem do laudo para descarte
+Valor do orçamento para reparo
+Descrição do(s) bem(s)
+Quantidade"
+8GVge4G_7H45IcDIoHBKs6,PATRIMÔNIO,Movimentação de bens,Logística reversa de distribuição (recolhimento para descarte),Equipamentos - TIC,"Motivo/Estado - Bem inservível (imprestável, obsoleto, ocioso ou irrecuperável)",Obs.,"anexar. 
+Motivo/Estado
+Imagem do laudo para descarte
+Valor do orçamento para reparo
+Descrição do(s) bem(s)
+Quantidade"
+RbCL8rWbqH4MqXT_4kLSG1,PATRIMÔNIO,Movimentação de bens,Logística reversa de distribuição (recolhimento para descarte),Equipamentos - TIC,"Motivo/Estado - Bem deteriorado (inservível, mas pode ser reparado)",Obs.,"anexar. 
+Motivo/Estado
+Imagem do laudo para descarte
+Valor do orçamento para reparo
+Descrição do(s) bem(s)
+Quantidade"
+mGs4Vi3gWe40MOks-1N7z7,SEGURANÇA ESCOLAR,Visita técnica segurança escolar,Consulta sobre instalação de alarmes,,,Obs.,
+4bjO6wAQuY4UA7x0z5jMD3,SEGURANÇA ESCOLAR,Visita técnica segurança escolar,Consulta sobre instalação de câmeras,,,Obs.,
+SnkrCNIHV04wUdLBC4R7ee,SEGURANÇA ESCOLAR,Visita técnica segurança escolar,Orientações gerais sobre contato com órgãos de segurança,,,Obs.,
+nFulyzyErV4NMGA0EZaZKb,SEGURANÇA ESCOLAR,Visita técnica segurança escolar,Orientações sobre os serviços da empresa contratada,,,Obs.,
+-TVA-k7RSV4TExaRyirfN3,SEGURANÇA ESCOLAR,Visita técnica segurança escolar,Ajuste nos equipamentos já instalados,,,Obs.,
+ualtC8XWY04i2o8t_lc4t9,SEGURANÇA ESCOLAR,"Ocorrências (furto, roubo, arrombamento, depredação)",,,,Obs.,Foto ou PDF do B.O. ou REDS
+wjElWI3Duj4IeJldc_m2Fe,SEGURANÇA ESCOLAR,"Ocorrências (furto, roubo, arrombamento, depredação)",,,,Obs.,Data da ocorrência
+fKoT_iHMll45EBgJmpIZaf,SEGURANÇA ESCOLAR,"Ocorrências (furto, roubo, arrombamento, depredação)",,,,Obs.,Descrição dos bens subtraídos ou danificados
+R1j1k8dReK4_qIVqtC5de6,SEGURANÇA ESCOLAR,"Ocorrências (furto, roubo, arrombamento, depredação)",,,,Obs.,"Indicação da ocorrência de danos graves (falta de energia elétrica ou de alimentos, se houve agressão a alguém da unidade)"
+eDebOFfH1O4kyYLH_ebEOe,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Demarcação de novos pontos em rotas,Rota,,Obs.,
+D-l-qVxcSe4mEhcnfyAJFd,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Demarcação de novos pontos em rotas,Turno,Manhã,Obs.,
+wFso_caoYR4YU8zBwYUad6,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Demarcação de novos pontos em rotas,Turno,Tarde,Obs.,
+czLyqQneBb4W2My2YZPVN3,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Demarcação de novos pontos em rotas,Turno,Noite,Obs.,
+2Mk2s4DN9y4tYB8BhItshc,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Demarcação de novos pontos em rotas,Trajeto,Ida,Obs.,
+sawXzuFLN84IMY1xDUY4oe,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Demarcação de novos pontos em rotas,Trajeto,Volta,Obs.,
+O6FR026eNk4zM_z5S9AfKd,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Demarcação de novos pontos em rotas,Trajeto,Ida e volta,Obs.,
+lAHEiZ8n9J4WeoncOzcwhe,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Alteração de rota,Motivo,Condições das vias,Obs.,
+BjXpx_ARVa44eBO4h9jxAa,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Alteração de rota,Motivo,Condições de segurança do trajeto,Obs.,
+7Hy3FEMzr34JmWUE5NXAB0,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Alteração de rota,Motivo,Duração do trajeto,Obs.,
+5dRwx552884ii0HoXro6n3,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Alteração de rota,Motivo,Solicitação de pais/responsáveis,Obs.,
+9A8ZDISXY_4Byjr3BhnTl8,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Alteração de rota,Turno,Manhã,Obs.,
+2DizKV1iXb4PmdTmUqI3c3,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Alteração de rota,Turno,Tarde,Obs.,
+_lufli92Ws4EAp6_GZ44S7,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Alteração de rota,Turno,Noite,Obs.,
+UdEyLiT0ps4-uoyYv5NOk3,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Alteração de rota,Trajeto,Ida,Obs.,
+GU0GF8REK74d6_FnndVFQ4,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Alteração de rota,Trajeto,Volta,Obs.,
+ZzSlwWnnk743q5GR0Fppx5,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Alteração de rota,Trajeto,Ida e volta,Obs.,
+0p3NgcbtVj4wyd2_QzfuU1,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Acréscimo de serviços,Aumento de veículos para a unidade,Anexar arquivo com lista de educandos na lista de espera e seus respectivos endereços,Obs.,
+I-LAlkgh4Q4YQcii9Y2Lg7,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Acréscimo de serviços,Aumento de viagens de veículos que já atendem a unidade,Anexar arquivo com lista de educandos na lista de espera e seus respectivos endereços,Obs.,
+HrduRVzskK4w2HQDWy-p48,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Acréscimo de serviços,Atendimento de regiões fora do zoneamento da unidade,,Obs.,"anexar. Localização (rota, endereço e/ou ponto de referência)"
+HwX-rx3HgL4OmnFQuriUAc,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Indicação de trechos críticos,Possibilidade ou ocorrência de alagamento,"Localização (rota, endereço e/ou ponto de referência)",Obs.,"anexar. Localização (rota, endereço e/ou ponto de referência)"
+BBIH1I7trx4d6N4ErWdyyb,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Indicação de trechos críticos,Via íngreme (pode causar capotamento do veículo),,Obs.,"anexar. Localização (rota, endereço e/ou ponto de referência)"
+YfwnecYqEE4JUxLRRtyLQ7,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Indicação de trechos críticos,Trânsito intenso de animais,,Obs.,"anexar. Localização (rota, endereço e/ou ponto de referência)"
+IMh9wwQy9B4_I5xcUCruoc,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Indicação de trechos críticos,Ponte com risco estrutural,,Obs.,"anexar. Localização (rota, endereço e/ou ponto de referência)"
+M_vqB27S6f4X6f-skC0E7b,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Indicação de trechos críticos,Via esburacada (impede o trânsito),,Obs.,"anexar. Localização (rota, endereço e/ou ponto de referência)"
+jEW5bokwfs4VezxLqitXo4,TRANSPORTE ESCOLAR,Solicitação de serviços transporte,Indicação de trechos críticos,Via com risco de deslizamento de terras,,Obs.,"anexar. Localização (rota, endereço e/ou ponto de referência)"
+6hTyutFVhR4Q2k9CCn3FJc,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Equipamentos com defeito (reclamação),Aparelho de ar-condicionado,Obs.,"anexar. Placa, modelo, motorista"
+104sBSMaHv4G67HSVlNrF6,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Equipamentos com defeito (reclamação),Cintos de segurança,Obs.,"anexar. Placa, modelo, motorista"
+P9rTax2-uz4CUYR8LtUAt5,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Equipamentos com defeito (reclamação),Faróis ou lanternas,Obs.,"anexar. Placa, modelo, motorista"
+0A0wkpzMbx4Hix8BRCFBZ5,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Equipamentos com defeito (reclamação),Janelas ou para-brisas,Obs.,"anexar. Placa, modelo, motorista"
+lV0fxU_HOa4QyCP7cOjSzd,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Equipamentos com defeito (reclamação),Pneus ou rodas,Obs.,"anexar. Placa, modelo, motorista"
+oZ5CziUSG64WA8XNHHt8d7,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Equipamentos com defeito (reclamação),Portas ou travas,Obs.,"anexar. Placa, modelo, motorista"
+BE-E7M4rv94oi9ULTHazS3,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Equipamentos com defeito (reclamação),Falhas mecânicas,Obs.,"anexar. Placa, modelo, motorista"
+zAMcrIegK24hI0_96Pammb,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Problemas de conforto (reclamação),Assentos,Obs.,"anexar. Placa, modelo, motorista"
+8100by7CPq4G6kabeDucK1,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Problemas de conforto (reclamação),Higiene,Obs.,"anexar. Placa, modelo, motorista"
+b6ZcvjafbM43QciNvh2Rt4,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Problemas de conforto (reclamação),Ventilação,Obs.,"anexar. Placa, modelo, motorista"
+-H_z_yGmn44pi2W-WfDAeb,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Descumprimento da legislação (denúncia),Ausência de selo ou autorização provisória,Obs.,"anexar. Placa, modelo, motorista"
+Y-atFqO72Q4CacBLusfSV6,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Descumprimento da legislação (denúncia),Ausência de laudo de inspeção veicular vigente,Obs.,"anexar. Placa, modelo, motorista"
+KD0vuLWtjZ4HAdjmSzGeC9,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Descumprimento da legislação (denúncia),Ausência de plotagem ou pintura (faixa amarela ESCOLAR),Obs.,"anexar. Placa, modelo, motorista"
+sC5r0u8ttG4QakKz7LKHc4,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Descumprimento da legislação (denúncia),Ausência de equipamentos de acessibilidade,Obs.,"anexar. Placa, modelo, motorista"
+AR1dnb2pUz4OmGE_HRIqT6,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Descumprimento da legislação (denúncia),Ausência de placa vermelha,Obs.,"anexar. Placa, modelo, motorista"
+Lu3p76N9_y43YX6B2vuUf2,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Descumprimento da legislação (denúncia),Ausência de extintores de incêndio,Obs.,"anexar. Placa, modelo, motorista"
+sQis4PGizn4WMx0wvMVvq8,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Descumprimento da legislação (denúncia),Ausência de cinto de segurança,Obs.,"anexar. Placa, modelo, motorista"
+pnUdO-gpmw4CihHDU_Gtr0,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Veículo,Descumprimento da legislação (denúncia),Ausência de estepe,Obs.,"anexar. Placa, modelo, motorista"
+ZDX3ye9--E4f6vAxvUalp4,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Condutor,Pontualidade - atrasos (reclamação),Horários (atrasados) de chegada dos educandos na unidade.,Obs.,"anexar. Placa, modelo, motorista, dias e horários atrasados"
+C2jHueevTI4mUo0s8Wo6_c,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Condutor,Assiduidade - faltas (reclamação),Dias (faltas) do motorista,Obs.,"anexar. Placa, modelo, motorista, quantidade de faltas"
+VLM1TqTiD24o68CMjFz5U4,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Condutor,Desvio injustificado de rota (denúncia),,Obs.,"anexar. Placa, modelo, motorista, local do desvio"
+_By0w6hqno47eDbGBFyKGb,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Condutor,Falta de atenção,Durante o embarque e o desembarque,Obs.,"anexar. Placa, modelo, motorista"
+vLOcY-YHPl4QUKM64F5238,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Condutor,Falta de atenção,Negligência no tratamento de crianças pequenas,Obs.,"anexar. Placa, modelo, motorista"
+XJjHefV6O24dILACzPAWm7,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Condutor,"Comunicação - falta de respeito, cordialidade, discussões (reclamação)",Ocorrência com educandos,Obs.,anexar. Dados das ocorrencias
+K_JsdiU_aW4iICPJ8dchf3,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Condutor,"Comunicação - falta de respeito, cordialidade, discussões (reclamação)",Ocorrência com familiares ou responsáveis dos educandos,Obs.,anexar. Dados das ocorrencias
+2RPQp3EsaE4ZAEMOO3V8h6,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Condutor,"Comunicação - falta de respeito, cordialidade, discussões (reclamação)",Ocorrência com servidores,Obs.,anexar. Dados das ocorrencias
+-Adpg_Z4624leSyofBydbc,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Condutor,Direção imprudente (denúncia),Alta velocidade,Obs.,"anexar. Placa, modelo, motorista"
+WZl4ODJ8Bh4MYmMDHuQvo7,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Condutor,Direção imprudente (denúncia),Uso de celular ou outro aparelho enquanto dirige,Obs.,"anexar. Placa, modelo, motorista"
+nSyI5um1D74ly3tTHUC4bb,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Condutor,Direção imprudente (denúncia),Desrespeito a normas de trânsito,Obs.,"anexar. Placa, modelo, motorista"
+bxz_Vtc4Tx4RM_-NiLj6k8,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Condutor,Assédio ou abuso sexual (denúncia),,Obs.,"anexar. 
+Data da ocorrência
+Horário da ocorrência
+Nome do condutor"
+5J1CHgopI449qXU1VZ-ds7,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Serviços,Demora na substituição de veículo com falha mecânica (reclamação),,Obs.,"anexar. Placa, modelo, motorista, tempo de espera"
+ZOmJnCCcok4F6KqSEQaQt3,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Serviços,Falhas mecânicas recorrentes (reclamação),,Obs.,"anexar. Placa, modelo, motorista, rota"
+xo8Iqaxqgk4FI_jOqOMBi5,TRANSPORTE ESCOLAR,Reclamação (insatisfação sobre a qualidade dos serviços) ou denúncia (descumprimento da legislação),Serviços,"Não reposição de veículo, em caso de ausência de condutor (reclamação)",,Obs.,"anexar. Placa, modelo, motorista, data, horário, rota"
+2TQQ90yIcL4JQThaNeJNl0,DETIC,COMPUTADOR,APITANDO,,,Obs.,
+PYg9YzA9Hv4gIayanv-DA3,DETIC,COMPUTADOR,HORÁRIO INCORRETO,,,Obs.,
+Ex8SY9dv7-4hmZ54C0rJc6,DETIC,COMPUTADOR,MONITOR,,,Obs.,
+6cOeo9TOuX4OiY5lsaDQy5,DETIC,COMPUTADOR,NÃO DESLIGA,,,Obs.,
+fCPQmK5bNR4dQSnm__2PT9,DETIC,COMPUTADOR,NÃO LIGA,,,Obs.,
+mZ5qnhD1eW4B6q37A57V76,DETIC,COMPUTADOR,SEM IMAGEM,,,Obs.,
+bqL1aFhSyJ4amRD4K3lxma,DETIC,COMPUTADOR,TECLADO,,,Obs.,
+4HdwOTVjxw4E6TvAOC6U8f,DETIC,COMPUTADOR,TROCA DE SENHA,,,Obs.,
+zkMAMq9eB84oIcUAGfkCL7,DETIC,COMPUTADOR,TROCA DE PEÇA,,,Obs.,
+B1K22OpV_H4xaEVzmlCcV1,DETIC,IMPRESSORA,MANCHA NA IMPRESSÃO,,,Obs.,
+13ZFfXf4Fe48ACIqVbrSA3,DETIC,IMPRESSORA,PAPEL ATOLADO,,,Obs.,
+B-TYgAaKcd4Mqp5cCjQRlf,DETIC,IMPRESSORA,SCANNER,,,Obs.,
+Iig3olhnUr4uuqVFRHrV81,DETIC,IMPRESSORA,TONALIDADE,,,Obs.,
+plyy3HsIbR4detXiFD0Jz5,DETIC,INSTALAÇÃO,IMPRESSORA NOVA,,,Obs.,
+i22r7LhiqV4lEvUQLm3hWb,DETIC,INSTALAÇÃO,ROTEADOR OU AP,,,Obs.,
+n6-kM30LeI42qXX0PiRVwb,DETIC,INSTALAÇÃO,PROGRAMAS,,,Obs.,
+vvb1Ycw8sV4-yC7MX8xMSa,DETIC,INTERNET,INSTALAÇÃO,,,Obs.,
+qKg3xU1l2U4DIlwdmG-Z24,DETIC,INTERNET,SEM CONEXÃO CABEADA,,,Obs.,
+FUtDNECw8a4CivqvS1K8zd,DETIC,INTERNET,SEM NENHUMA CONEXÃO,,,Obs.,
+AEXHut9oQE4t6iau9S6N22,DETIC,REDE CABEADA,CONFIGURAÇÃO,,,Obs.,
+HKLZbxnXsZ4d6dOKwFeek6,DETIC,REDE CABEADA,MANUTENÇÃO,,,Obs.,
+67aLPH4g0D4xqgJPw2xEq0,DETIC,REDE SEM FIO,INSTALAÇÃO DE EQUIPAMENTO,,,Obs.,
+g-lFzaMpVr4CIypC4CFBae,DETIC,REDE SEM FIO,TROCAR SENHA,,,Obs.,
+ThYdvVqiMU4h2StREcu9Zd,DETIC,TELEFONE,NÃO ORIGINA CHAMADA,,,Obs.,
+NbRe2w8Vxu45ab0htofR67,DETIC,TELEFONE,RUÍDO NA LINHA,,,Obs.,
+JGuJqzFJz94Vypl1THEBW5,DETIC,SISTEMA ACADEMICO,INSTABILIDADE,,,Obs.,
+lPZreXAdC-4feRgpMwPY25,DETIC,SISTEMA ACADEMICO,SEM CONEXÃO,,,Obs.,
+X5RCB5h0vs4Cu-1O9_UCqe,DETIC,DOCUMENTOS,LAUDO PARA DISCARTE,,,Obs.,
+engyL7MmNG4jy62S9LmPI9,DETIC,DOCUMENTOS,JUSTIFICATIVA,,,Obs.,

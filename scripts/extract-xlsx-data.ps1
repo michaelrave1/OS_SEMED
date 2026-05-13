@@ -91,15 +91,31 @@ function Rows-ToObjects {
   return $objects
 }
 
+function Read-CsvObjects {
+  param([string]$Path)
+  return @(Import-Csv -LiteralPath $Path -Encoding UTF8 | ForEach-Object {
+    $item = [ordered]@{}
+    foreach ($property in $_.PSObject.Properties) {
+      $item[$property.Name] = Repair-Text ([string]$property.Value)
+    }
+    [pscustomobject]$item
+  })
+}
+
 $root = Split-Path -Parent $PSScriptRoot
 $source = Join-Path $root "source-data\DIRLOGISTICA-314837652"
+$documents = Split-Path -Parent $root
 $outDir = Join-Path $root "assets"
 New-Item -ItemType Directory -Path $outDir -Force | Out-Null
 
 $data = [ordered]@{}
 foreach ($file in @("ABERTURA_OS", "LOGISTICA", "UNIDADES", "ROTAS", "VEICULOS", "MOTORISTAS")) {
-  $rows = Read-XlsxRows (Join-Path $source "$file.xlsx")
-  $data[$file] = Rows-ToObjects $rows
+  if ($file -eq "LOGISTICA" -and (Test-Path (Join-Path $documents "LOGISTICA - LOGISTICA.csv"))) {
+    $data[$file] = Read-CsvObjects (Join-Path $documents "LOGISTICA - LOGISTICA.csv")
+  } else {
+    $rows = Read-XlsxRows (Join-Path $source "$file.xlsx")
+    $data[$file] = Rows-ToObjects $rows
+  }
 }
 
 $json = $data | ConvertTo-Json -Depth 12

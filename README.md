@@ -23,7 +23,7 @@ Senha para todos: `admin123`
 - Listagem de ordens de servico com filtros.
 - Criacao e edicao de OS.
 - Estabelecimento vinculado ao usuario, com alteracao permitida apenas ao administrador.
-- Selecao em cascata: area de solicitacao filtra natureza, natureza filtra tipo e tipo filtra descricao.
+- Selecao em cascata baseada no CSV de logistica: area de solicitacao filtra natureza, natureza filtra tipo, tipo filtra descricao e descricao filtra detalhamento.
 - Status de OS e historico de alteracoes.
 - Mensagens internas por OS.
 - Cadastros de unidades, logistica, rotas, veiculos, motoristas e usuarios.
@@ -37,6 +37,7 @@ Senha para todos: `admin123`
 - `app.js`: regras de tela, filtros, formularios e persistencia local.
 - `assets/seed-data.js`: dados extraidos das planilhas.
 - `source-data/`: planilhas originais extraidas do ZIP.
+- `source-data/DIRLOGISTICA-314837652/LOGISTICA - LOGISTICA.csv`: fonte usada para a cascata de filtros da logistica.
 - `scripts/extract-xlsx-data.ps1`: rotina de extracao dos dados das planilhas.
 - `docs/technical-plan.md`: modelo de dados, arquitetura e evolucao para producao.
 
