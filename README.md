@@ -11,7 +11,6 @@ Usuarios de demonstracao:
 - `admin@dirlogistica.local`
 - `solicitante@dirlogistica.local`
 - `tecnico@dirlogistica.local`
-- `logistica@dirlogistica.local`
 - `gestor@dirlogistica.local`
 
 Senha para todos: `admin123`
@@ -28,9 +27,12 @@ Senha para todos: `admin123`
 - Status bloqueado para solicitantes; apenas administrador ou responsavel da OS pode alterar.
 - Upload de anexos no formulario de OS para imagens, PDFs, documentos, planilhas e outros arquivos.
 - Gestao de usuarios para administrador, com adicionar, editar, excluir/reativar, alterar nome, e-mail, perfil, estabelecimento e foto de perfil.
+- Gestao de perfis com regras: solicitante ve apenas suas OS, responsavel ve apenas OS destinadas a ele e altera status, gestor visualiza tudo sem alterar, administrador visualiza e altera tudo.
+- Perfil Equipe Logistica removido.
 - Status de OS e historico de alteracoes.
 - Mensagens internas por OS.
 - Cadastros de unidades, logistica, rotas, veiculos, motoristas e usuarios.
+- Formularios de novo/editar em paginas dedicadas para unidades, logistica, rotas, veiculos, motoristas e usuarios.
 - Exclusao logica por ativo/inativo nos cadastros.
 - Dados iniciais importados das planilhas `ABERTURA_OS`, `LOGISTICA`, `UNIDADES`, `ROTAS`, `VEICULOS` e `MOTORISTAS`.
 

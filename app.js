@@ -14,17 +14,46 @@ const statuses = [
 const demoUsers = [
   { id: "u-admin", name: "Administrador", email: "admin@dirlogistica.local", password: "admin123", role: "Administrador", unit: "" },
   { id: "u-solicitante", name: "Solicitante", email: "solicitante@dirlogistica.local", password: "admin123", role: "Solicitante", unit: "" },
-  { id: "u-tecnico", name: "Responsável Técnico", email: "tecnico@dirlogistica.local", password: "admin123", role: "Responsável/Técnico", unit: "" },
-  { id: "u-logistica", name: "Equipe Logística", email: "logistica@dirlogistica.local", password: "admin123", role: "Logística", unit: "" },
+  { id: "u-tecnico", name: "Responsável Técnico", email: "tecnico@dirlogistica.local", password: "admin123", role: "Responsável", unit: "" },
   { id: "u-gestor", name: "Gestor Consulta", email: "gestor@dirlogistica.local", password: "admin123", role: "Gestor/Consulta", unit: "" },
 ];
 
 const defaultAreaResponsibles = {
   DETIC: "tecnico@dirlogistica.local",
-  "ALIMENTAÇÃO ESCOLAR": "logistica@dirlogistica.local",
+  "ALIMENTAÇÃO ESCOLAR": "tecnico@dirlogistica.local",
 };
 
-const roles = ["Administrador", "Solicitante", "Responsável/Técnico", "Logística", "Gestor/Consulta"];
+const roles = ["Administrador", "Solicitante", "Responsável", "Gestor/Consulta"];
+
+const profileRules = {
+  Administrador: {
+    label: "Administrador",
+    description: "Visualiza e altera todos os dados do sistema.",
+    canOpenOrders: true,
+    canViewAllOrders: true,
+    canEditAllOrders: true,
+    canChangeStatus: true,
+    canManageCatalogs: true,
+    canManageUsers: true,
+  },
+  Solicitante: {
+    label: "Solicitante",
+    description: "Abre novas OS e visualiza somente as OS abertas por ele e seus chats.",
+    canOpenOrders: true,
+    canViewOwnOrders: true,
+  },
+  Responsável: {
+    label: "Responsável",
+    description: "Visualiza somente OS destinadas a ele, participa do chat e altera status.",
+    canViewAssignedOrders: true,
+    canChangeAssignedStatus: true,
+  },
+  "Gestor/Consulta": {
+    label: "Gestor/Consulta",
+    description: "Visualiza todas as OS e cadastros, sem alterar dados.",
+    canViewAllOrders: true,
+  },
+};
 
 const navItems = [
   ["dashboard", "Dashboard"],
@@ -44,6 +73,7 @@ let state = loadState();
 let currentView = "dashboard";
 let drawerOrderId = null;
 let activeCrud = "units";
+let editingCatalogId = null;
 let editingUserId = null;
 
 function loadState() {
@@ -138,12 +168,18 @@ function normalizeState(next) {
     next.dataVersion = DATA_VERSION;
   }
   next.areaResponsibles = { ...defaultAreaResponsibles, ...(next.areaResponsibles || {}) };
-  next.users = (next.users || demoUsers).map((user) => ({
+  next.users = (next.users || demoUsers).filter((user) => user.role !== "Logística").map((user) => ({
     ...user,
+    role: normalizeRole(user.role),
     unit: user.unit || "",
     photo: user.photo || "",
     active: user.active !== false,
   }));
+  Object.keys(next.areaResponsibles).forEach((area) => {
+    const email = next.areaResponsibles[area];
+    const user = next.users.find((item) => item.email === email && item.active !== false);
+    if (!user) next.areaResponsibles[area] = defaultAreaResponsibles[area] || "tecnico@dirlogistica.local";
+  });
   next.logistics = (next.logistics || []).map((item) => ({
     ...item,
     description: item.description || "",
@@ -152,9 +188,21 @@ function normalizeState(next) {
     ...order,
     attachments: normalizeAttachments(order.attachments),
   }));
+  if (next.session) {
+    const sessionUser = next.users.find((user) => user.id === next.session.id && user.active !== false);
+    next.session = sessionUser
+      ? { id: sessionUser.id, name: sessionUser.name, email: sessionUser.email, role: sessionUser.role, unit: sessionUser.unit, photo: sessionUser.photo || "" }
+      : null;
+  }
   assignDefaultUserUnits(next);
   saveState(next);
   return next;
+}
+
+function normalizeRole(role) {
+  if (role === "Responsável/Técnico") return "Responsável";
+  if (role === "Logística") return "Gestor/Consulta";
+  return roles.includes(role) ? role : "Solicitante";
 }
 
 function mapLogisticsRows(rows) {
@@ -225,15 +273,36 @@ function unique(values) {
 }
 
 function canManage() {
-  return ["Administrador", "Logística", "Responsável/Técnico"].includes(state.session?.role);
+  return Boolean(profileRules[state.session?.role]?.canEditAllOrders);
 }
 
 function canEditCatalogs() {
-  return ["Administrador", "Logística"].includes(state.session?.role);
+  return Boolean(profileRules[state.session?.role]?.canManageCatalogs);
 }
 
 function isAdmin() {
   return state.session?.role === "Administrador";
+}
+
+function isManager() {
+  return state.session?.role === "Gestor/Consulta";
+}
+
+function canOpenOrders() {
+  return Boolean(profileRules[state.session?.role]?.canOpenOrders);
+}
+
+function canViewCatalogs() {
+  return isAdmin() || isManager();
+}
+
+function visibleNavItems() {
+  return navItems.filter(([id]) => {
+    if (id === "new-order") return canOpenOrders();
+    if (id === "users") return isAdmin();
+    if (["units", "logistics", "routes", "vehicles", "drivers"].includes(id)) return canViewCatalogs();
+    return true;
+  });
 }
 
 function currentUser() {
@@ -258,7 +327,36 @@ function canChangeStatus(order = null) {
   if (isAdmin()) return true;
   const responsible = order?.responsible || responsibleNameForArea(order?.area || "");
   const user = currentUser();
-  return Boolean(responsible && user && (responsible === user.name || responsible === user.email));
+  return state.session?.role === "Responsável" && Boolean(responsible && user && (responsible === user.name || responsible === user.email));
+}
+
+function canViewOrder(order) {
+  if (!order?.active) return false;
+  if (profileRules[state.session?.role]?.canViewAllOrders) return true;
+  if (state.session?.role === "Solicitante") return order.openedBy === state.session.email;
+  if (state.session?.role === "Responsável") return isOrderAssignedToCurrentUser(order);
+  return false;
+}
+
+function isOrderAssignedToCurrentUser(order) {
+  const user = currentUser();
+  return Boolean(user && (order.responsible === user.name || order.responsible === user.email));
+}
+
+function canEditOrder(order) {
+  return isAdmin() || canChangeStatus(order);
+}
+
+function canUseOrderChat(order) {
+  return isAdmin() || isManager() || order.openedBy === state.session?.email || isOrderAssignedToCurrentUser(order);
+}
+
+function canPostOrderMessage(order) {
+  return isAdmin() || order.openedBy === state.session?.email || isOrderAssignedToCurrentUser(order);
+}
+
+function visibleOrders() {
+  return state.orders.filter(canViewOrder);
 }
 
 function normalizeAttachments(value) {
@@ -316,7 +414,7 @@ function renderShell() {
           <span>${escapeHtml(currentUserUnit() || "Sem estabelecimento")}</span>
         </div>
         <nav class="nav">
-          ${navItems.map(([id, label]) => `<button class="${id === currentView ? "active" : ""}" data-nav="${id}">${label}</button>`).join("")}
+          ${visibleNavItems().map(([id, label]) => `<button class="${id === currentView ? "active" : ""}" data-nav="${id}">${label}</button>`).join("")}
         </nav>
         <button class="secondary" id="logout">Sair</button>
       </aside>
@@ -339,6 +437,9 @@ function renderShell() {
 }
 
 function renderView() {
+  if (!visibleNavItems().some(([id]) => id === currentView) && !["catalog-form", "user-form"].includes(currentView)) {
+    currentView = "dashboard";
+  }
   const view = document.querySelector("#view");
   if (currentView === "dashboard") view.innerHTML = dashboardHtml();
   if (currentView === "orders") view.innerHTML = ordersHtml();
@@ -347,7 +448,9 @@ function renderView() {
     activeCrud = currentView;
     view.innerHTML = crudHtml();
   }
+  if (currentView === "catalog-form") view.innerHTML = catalogFormHtml();
   if (currentView === "users") view.innerHTML = usersHtml();
+  if (currentView === "user-form") view.innerHTML = userFormHtml();
   if (currentView === "docs") view.innerHTML = docsHtml();
   bindViewEvents();
 }
@@ -365,7 +468,7 @@ function headerHtml(title, subtitle, action = "") {
 }
 
 function dashboardHtml() {
-  const activeOrders = state.orders.filter((order) => order.active);
+  const activeOrders = visibleOrders();
   const pending = activeOrders.filter((order) => !["Concluída", "Cancelada"].includes(order.status));
   const statusCounts = countBy(activeOrders, "status");
   const areaCounts = countBy(activeOrders, "area");
@@ -446,7 +549,7 @@ function recentOrdersHtml(orders) {
 
 function ordersHtml() {
   return `
-    ${headerHtml("Ordens de serviço", "Acompanhe, filtre e atualize solicitações.", `<button data-go-new>Nova OS</button>`)}
+    ${headerHtml("Ordens de serviço", "Acompanhe as ordens permitidas para o seu perfil.", canOpenOrders() ? `<button data-go-new>Nova OS</button>` : "")}
     <section class="toolbar">
       <input class="wide" id="filter-search" placeholder="Buscar por ID, unidade, descrição ou responsável" />
       ${selectHtml("filter-status", ["", ...statuses], "Todos os status")}
@@ -466,7 +569,7 @@ function renderOrdersTable() {
     unit: document.querySelector("#filter-unit")?.value || "",
     route: document.querySelector("#filter-route")?.value || "",
   };
-  const orders = state.orders.filter((order) => {
+  const orders = visibleOrders().filter((order) => {
     const haystack = [order.id, order.unit, order.area, order.nature, order.activityType, order.description, order.responsible].join(" ").toLowerCase();
     return order.active
       && (!search || haystack.includes(search))
@@ -490,7 +593,7 @@ function renderOrdersTable() {
               <td>${escapeHtml(order.driver || "Sem motorista")}<br><span class="muted">${escapeHtml(order.vehicle || "Sem veículo")} ${order.route ? ` / ${escapeHtml(order.route)}` : ""}</span></td>
               <td class="actions">
                 <button class="secondary" data-open-order="${order.id}">Ver</button>
-                ${canManage() ? `<button class="secondary" data-edit-order="${order.id}">Editar</button>` : ""}
+                ${canEditOrder(order) ? `<button class="secondary" data-edit-order="${order.id}">${isAdmin() ? "Editar" : "Status"}</button>` : ""}
               </td>
             </tr>
           `).join("") || `<tr><td colspan="7" class="empty">Nenhuma ordem encontrada.</td></tr>`}
@@ -518,6 +621,7 @@ function selectHtml(id, options, placeholder, selected = "") {
 function orderFormHtml(order = null) {
   const title = order ? `Editar OS ${order.id}` : "Nova ordem de serviço";
   const subtitle = order ? "Atualize dados, status, responsável e logística." : "Abra uma solicitação vinculada às tabelas importadas do AppSheet.";
+  const detailsEditable = !order || isAdmin();
   const unitOptions = isAdmin()
     ? state.units.filter((item) => item.active).map((item) => item.name)
     : [order?.unit || currentUserUnit()];
@@ -533,19 +637,19 @@ function orderFormHtml(order = null) {
     ${headerHtml(title, subtitle)}
     <form class="card section form-grid" id="order-form" data-id="${order?.id || ""}">
       <label>Área de solicitação
-        ${selectField("area", unique(state.logistics.map((item) => item.area)), selectedArea, "Selecione a área")}
+        ${selectField("area", unique(state.logistics.map((item) => item.area)), selectedArea, "Selecione a área", !detailsEditable)}
       </label>
       <label>Natureza da atividade
-        ${selectField("nature", cascadeNatures(selectedArea), selectedNature, "Selecione a natureza")}
+        ${selectField("nature", cascadeNatures(selectedArea), selectedNature, "Selecione a natureza", !detailsEditable)}
       </label>
       <label>Tipo de atividade
-        ${selectField("activityType", cascadeTypes(selectedArea, selectedNature), selectedType, "Selecione o tipo")}
+        ${selectField("activityType", cascadeTypes(selectedArea, selectedNature), selectedType, "Selecione o tipo", !detailsEditable)}
       </label>
       <label class="span-2">Descrição da atividade
-        ${selectField("description", cascadeDescriptions(selectedArea, selectedNature, selectedType), selectedDescription, "Selecione a descrição")}
+        ${selectField("description", cascadeDescriptions(selectedArea, selectedNature, selectedType), selectedDescription, "Selecione a descrição", !detailsEditable)}
       </label>
       <label>Detalhamento da atividade
-        ${selectField("detail", cascadeDetails(selectedArea, selectedNature, selectedType, selectedDescription), selectedDetail, "Selecione o detalhamento")}
+        ${selectField("detail", cascadeDetails(selectedArea, selectedNature, selectedType, selectedDescription), selectedDetail, "Selecione o detalhamento", !detailsEditable)}
       </label>
       <label>Estabelecimento
         ${selectField("unit", unitOptions, selectedUnit, "Selecione o estabelecimento", !isAdmin())}
@@ -557,28 +661,28 @@ function orderFormHtml(order = null) {
         <input name="responsible" value="${escapeHtml(selectedResponsible)}" placeholder="Definido pela área de solicitação" readonly />
       </label>
       <label>Possui material?
-        ${selectField("hasMaterial", ["Não informado", "Sim", "Não"], order?.hasMaterial || "Não informado")}
+        ${selectField("hasMaterial", ["Não informado", "Sim", "Não"], order?.hasMaterial || "Não informado", "Não informado", !detailsEditable)}
       </label>
       <label class="span-3">Observação
-        <textarea name="observation" placeholder="Observações internas">${escapeHtml(order?.observation || "")}</textarea>
+        <textarea name="observation" placeholder="Observações internas" ${detailsEditable ? "" : "readonly"}>${escapeHtml(order?.observation || "")}</textarea>
       </label>
       <label>Motorista
-        ${selectField("driver", ["", ...state.drivers.filter((item) => item.active).map((item) => item.name)], order?.driver)}
+        ${selectField("driver", ["", ...state.drivers.filter((item) => item.active).map((item) => item.name)], order?.driver, "Não informado", !detailsEditable)}
       </label>
       <label>Veículo / placa
-        ${selectField("vehicle", ["", ...state.vehicles.filter((item) => item.active).map((item) => item.plate)], order?.vehicle)}
+        ${selectField("vehicle", ["", ...state.vehicles.filter((item) => item.active).map((item) => item.plate)], order?.vehicle, "Não informado", !detailsEditable)}
       </label>
       <label>Rota
-        ${selectField("route", ["", ...state.routes.filter((item) => item.active).map((item) => item.name)], order?.route)}
+        ${selectField("route", ["", ...state.routes.filter((item) => item.active).map((item) => item.name)], order?.route, "Não informado", !detailsEditable)}
       </label>
       <label>Data do ocorrido
-        <input name="occurredAt" type="datetime-local" value="${toInputDate(order?.occurredAt)}" />
+        <input name="occurredAt" type="datetime-local" value="${toInputDate(order?.occurredAt)}" ${detailsEditable ? "" : "readonly"} />
       </label>
       <label>B.O / REDS
-        <input name="policeReport" value="${escapeHtml(order?.policeReport || "")}" />
+        <input name="policeReport" value="${escapeHtml(order?.policeReport || "")}" ${detailsEditable ? "" : "readonly"} />
       </label>
       <label>Anexos
-        <input name="attachments" type="file" multiple accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.zip,.rar,.ppt,.pptx" />
+        <input name="attachments" type="file" multiple accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.csv,.txt,.zip,.rar,.ppt,.pptx" ${detailsEditable ? "" : "disabled"} />
         ${attachmentsPreview(order?.attachments)}
       </label>
       <div class="span-3 actions">
@@ -637,6 +741,10 @@ function areaKey(area) {
   return encodeURIComponent(area);
 }
 
+function responsibleOptions() {
+  return state.users.filter((user) => user.active !== false && user.role === "Responsável").map((user) => user.email);
+}
+
 async function filesToAttachments(files) {
   const validFiles = files.filter((file) => file && file.name && file.size > 0);
   return Promise.all(validFiles.map(async (file) => ({
@@ -693,6 +801,7 @@ function bindViewEvents() {
   document.querySelectorAll("[data-open-order]").forEach((button) => button.addEventListener("click", () => openOrder(button.dataset.openOrder)));
   document.querySelectorAll("[data-edit-order]").forEach((button) => button.addEventListener("click", () => editOrder(button.dataset.editOrder)));
   document.querySelector("[data-go-new]")?.addEventListener("click", () => {
+    if (!canOpenOrders()) return;
     currentView = "new-order";
     renderShell();
   });
@@ -707,7 +816,9 @@ function bindViewEvents() {
   });
   if (currentView === "orders") renderOrdersTable();
   if (["units", "logistics", "routes", "vehicles", "drivers"].includes(currentView)) bindCrudEvents();
+  if (currentView === "catalog-form") bindCatalogFormEvents();
   if (currentView === "users") bindUsersEvents();
+  if (currentView === "user-form") bindUserFormEvents();
 }
 
 function bindCascadeFields() {
@@ -764,6 +875,14 @@ async function saveOrder(event) {
   const data = Object.fromEntries(formData.entries());
   const existingId = form.dataset.id;
   const previous = state.orders.find((order) => order.id === existingId);
+  if (!previous && !canOpenOrders()) {
+    alert("Seu perfil não tem permissão para abrir novas OS.");
+    return;
+  }
+  if (previous && !canEditOrder(previous)) {
+    alert("Seu perfil não tem permissão para alterar esta OS.");
+    return;
+  }
   const vehicle = state.vehicles.find((item) => item.plate === data.vehicle);
   if (!data.area || !data.nature || !data.activityType) {
     alert("Selecione área, natureza e tipo da atividade.");
@@ -817,7 +936,13 @@ async function saveOrder(event) {
 function openOrder(id) {
   drawerOrderId = id;
   const order = state.orders.find((item) => item.id === id);
+  if (!order || !canViewOrder(order)) {
+    alert("Seu perfil não tem permissão para visualizar esta OS.");
+    return;
+  }
   const route = state.routes.find((item) => item.name === order.route);
+  const canChat = canUseOrderChat(order);
+  const canPostMessage = canPostOrderMessage(order);
   const drawer = document.querySelector("#drawer");
   drawer.innerHTML = `
     <div class="scrim" data-close-drawer></div>
@@ -849,12 +974,14 @@ function openOrder(id) {
         </div>
         <div class="card section">
           <h3>Mensagens internas</h3>
-          <form id="message-form" class="grid">
-            <textarea name="message" placeholder="Registrar mensagem na OS"></textarea>
-            <button type="submit">Adicionar mensagem</button>
-          </form>
+          ${canPostMessage ? `
+            <form id="message-form" class="grid">
+              <textarea name="message" placeholder="Registrar mensagem na OS"></textarea>
+              <button type="submit">Adicionar mensagem</button>
+            </form>
+          ` : `<p class="muted">${canChat ? "Seu perfil visualiza este chat, mas não pode adicionar mensagens." : "Chat restrito ao solicitante, responsável e administrador."}</p>`}
           <div class="timeline" style="margin-top:14px">
-            ${order.messages.map((message) => timelineItem(message.user, message.createdAt, message.text)).join("") || `<p class="muted">Sem mensagens registradas.</p>`}
+            ${canChat ? (order.messages.map((message) => timelineItem(message.user, message.createdAt, message.text)).join("") || `<p class="muted">Sem mensagens registradas.</p>`) : ""}
           </div>
         </div>
         <div class="card section">
@@ -868,7 +995,7 @@ function openOrder(id) {
   `;
   drawer.classList.add("open");
   drawer.querySelectorAll("[data-close-drawer]").forEach((item) => item.addEventListener("click", closeDrawer));
-  drawer.querySelector("#message-form").addEventListener("submit", (event) => {
+  drawer.querySelector("#message-form")?.addEventListener("submit", (event) => {
     event.preventDefault();
     const text = new FormData(event.currentTarget).get("message").toString().trim();
     if (!text) return;
@@ -887,6 +1014,10 @@ function closeDrawer() {
 
 function editOrder(id) {
   const order = state.orders.find((item) => item.id === id);
+  if (!order || !canEditOrder(order)) {
+    alert("Seu perfil não tem permissão para alterar esta OS.");
+    return;
+  }
   currentView = "orders";
   document.querySelector("#view").innerHTML = orderFormHtml(order);
   bindViewEvents();
@@ -896,55 +1027,40 @@ function timelineItem(user, createdAt, text) {
   return `<article><strong>${escapeHtml(user)}</strong><p>${escapeHtml(text)}</p><span class="muted">${formatDate(createdAt)}</span></article>`;
 }
 
-function crudHtml() {
-  const configs = {
+function catalogConfigs() {
+  return {
     units: { title: "Unidades", data: state.units, fields: [["type", "Tipo"], ["name", "Nome da unidade"], ["address", "Endereço"], ["latlong", "LATLONG"]] },
     logistics: { title: "Logística", data: state.logistics, fields: [["area", "Área"], ["nature", "Natureza"], ["type", "Tipo"], ["description", "Descrição"], ["detail", "Detalhamento"]] },
     routes: { title: "Rotas", data: state.routes, fields: [["routeId", "ID rota"], ["name", "Rota"], ["number", "Nº rota"], ["link", "Link"]] },
     vehicles: { title: "Veículos", data: state.vehicles, fields: [["plate", "Placa/ID"], ["model", "Modelo/tipo"], ["seats", "Passageiros"]] },
     drivers: { title: "Motoristas", data: state.drivers, fields: [["driverId", "ID"], ["name", "Nome do motorista"]] },
   };
+}
+
+function crudHtml() {
+  const configs = catalogConfigs();
   const config = configs[activeCrud];
   return `
-    ${headerHtml(config.title, "Cadastros importados das planilhas do AppSheet, com exclusão lógica por ativo/inativo.")}
-    <div class="crud-layout">
-      <form class="card section grid" id="crud-form">
-        <h3>Novo registro</h3>
-        ${config.fields.map(([name, label]) => `<label>${label}<input name="${name}" /></label>`).join("")}
-        <button type="submit" ${canEditCatalogs() ? "" : "disabled"}>Adicionar</button>
-        ${canEditCatalogs() ? "" : `<p class="muted">Seu perfil tem acesso de consulta.</p>`}
-      </form>
-      <section>
-        <div class="toolbar"><input class="wide" id="crud-search" placeholder="Buscar no cadastro" /></div>
-        <div id="crud-table"></div>
-      </section>
-    </div>
+    ${headerHtml(config.title, "Cadastros importados das planilhas do AppSheet, com exclusão lógica por ativo/inativo.", canEditCatalogs() ? `<button data-new-catalog>Novo registro</button>` : "")}
+    <section>
+      <div class="toolbar"><input class="wide" id="crud-search" placeholder="Buscar no cadastro" /></div>
+      <div id="crud-table"></div>
+    </section>
   `;
 }
 
 function bindCrudEvents() {
-  document.querySelector("#crud-form")?.addEventListener("submit", (event) => {
-    event.preventDefault();
-    if (!canEditCatalogs()) return;
-    const values = Object.fromEntries(new FormData(event.currentTarget).entries());
-    state[activeCrud].unshift({ id: makeId("CAD"), active: true, ...values });
-    saveState();
-    renderCrudTable();
-    event.currentTarget.reset();
+  document.querySelector("[data-new-catalog]")?.addEventListener("click", () => {
+    editingCatalogId = null;
+    currentView = "catalog-form";
+    renderShell();
   });
   document.querySelector("#crud-search")?.addEventListener("input", renderCrudTable);
   renderCrudTable();
 }
 
 function renderCrudTable() {
-  const configs = {
-    units: [["type", "Tipo"], ["name", "Nome"], ["address", "Endereço"], ["latlong", "LATLONG"]],
-    logistics: [["area", "Área"], ["nature", "Natureza"], ["type", "Tipo"], ["description", "Descrição"], ["detail", "Detalhamento"]],
-    routes: [["routeId", "ID"], ["name", "Rota"], ["number", "Nº"], ["link", "Link"]],
-    vehicles: [["plate", "Placa/ID"], ["model", "Modelo"], ["seats", "Passageiros"]],
-    drivers: [["driverId", "ID"], ["name", "Nome"]],
-  };
-  const fields = configs[activeCrud];
+  const fields = catalogConfigs()[activeCrud].fields;
   const search = document.querySelector("#crud-search")?.value.toLowerCase() || "";
   const rows = state[activeCrud].filter((item) => JSON.stringify(item).toLowerCase().includes(search));
   document.querySelector("#crud-table").innerHTML = `
@@ -956,13 +1072,20 @@ function renderCrudTable() {
             <tr>
               ${fields.map(([key]) => `<td>${key === "link" && item[key] ? `<a href="${escapeHtml(item[key])}" target="_blank" rel="noreferrer">Abrir link</a>` : escapeHtml(item[key] || "")}</td>`).join("")}
               <td>${item.active ? `<span class="pill">Ativo</span>` : `<span class="pill danger">Inativo</span>`}</td>
-              <td>${canEditCatalogs() ? `<button class="secondary" data-toggle-active="${item.id}">${item.active ? "Inativar" : "Ativar"}</button>` : "Consulta"}</td>
+              <td class="actions">${canEditCatalogs() ? `<button class="secondary" data-edit-catalog="${item.id}">Editar</button><button class="secondary" data-toggle-active="${item.id}">${item.active ? "Inativar" : "Ativar"}</button>` : "Consulta"}</td>
             </tr>
           `).join("")}
         </tbody>
       </table>
     </div>
   `;
+  document.querySelectorAll("[data-edit-catalog]").forEach((button) => {
+    button.addEventListener("click", () => {
+      editingCatalogId = button.dataset.editCatalog;
+      currentView = "catalog-form";
+      renderShell();
+    });
+  });
   document.querySelectorAll("[data-toggle-active]").forEach((button) => {
     button.addEventListener("click", () => {
       const item = state[activeCrud].find((entry) => entry.id === button.dataset.toggleActive);
@@ -973,9 +1096,52 @@ function renderCrudTable() {
   });
 }
 
+function catalogFormHtml() {
+  if (!canEditCatalogs()) {
+    return `
+      ${headerHtml("Cadastro", "Seu perfil não tem permissão para alterar cadastros.")}
+      <section class="card section"><p class="muted">Acesso somente para administradores.</p></section>
+    `;
+  }
+  const config = catalogConfigs()[activeCrud];
+  const item = state[activeCrud].find((entry) => entry.id === editingCatalogId) || null;
+  return `
+    ${headerHtml(item ? `Editar ${config.title}` : `Novo registro em ${config.title}`, "Preencha os dados do cadastro em uma página dedicada.")}
+    <form class="card section form-grid" id="catalog-form" data-id="${item?.id || ""}">
+      ${config.fields.map(([name, label]) => `<label>${label}<input name="${name}" value="${escapeHtml(item?.[name] || "")}" /></label>`).join("")}
+      <div class="span-3 actions">
+        <button type="submit">${item ? "Salvar alterações" : "Adicionar registro"}</button>
+        <button type="button" class="secondary" id="cancel-catalog-form">Cancelar</button>
+      </div>
+    </form>
+  `;
+}
+
+function bindCatalogFormEvents() {
+  document.querySelector("#catalog-form")?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!canEditCatalogs()) return;
+    const values = Object.fromEntries(new FormData(event.currentTarget).entries());
+    const existing = state[activeCrud].find((entry) => entry.id === event.currentTarget.dataset.id);
+    if (existing) {
+      Object.assign(existing, values);
+    } else {
+      state[activeCrud].unshift({ id: makeId("CAD"), active: true, ...values });
+    }
+    editingCatalogId = null;
+    saveState();
+    currentView = activeCrud;
+    renderShell();
+  });
+  document.querySelector("#cancel-catalog-form")?.addEventListener("click", () => {
+    editingCatalogId = null;
+    currentView = activeCrud;
+    renderShell();
+  });
+}
+
 function usersHtml() {
   const areas = unique(state.logistics.map((item) => item.area));
-  const editingUser = state.users.find((user) => user.id === editingUserId) || null;
   if (!isAdmin()) {
     return `
       ${headerHtml("Usuários", "Gestão disponível apenas para administradores.")}
@@ -983,43 +1149,26 @@ function usersHtml() {
     `;
   }
   return `
-    ${headerHtml("Usuários", "Adicione, exclua e modifique nome, e-mail, perfil, estabelecimento e foto de perfil.")}
+    ${headerHtml("Usuários", "Adicione, exclua e modifique usuários em página própria.", `<button data-new-user>Novo usuário</button>`)}
     <section class="grid two-col">
-      <div class="card section">
-        <h3>${editingUser ? "Editar usuário" : "Novo usuário"}</h3>
-        <form class="grid" id="user-form" data-id="${editingUser?.id || ""}">
-          <div class="user-photo-row">
-            ${avatarHtml(editingUser, "large")}
-            <label>Foto de perfil
-              <input name="photo" type="file" accept="image/*" />
-            </label>
-          </div>
-          <label>Nome
-            <input name="name" value="${escapeHtml(editingUser?.name || "")}" required />
-          </label>
-          <label>E-mail
-            <input name="email" type="email" value="${escapeHtml(editingUser?.email || "")}" required />
-          </label>
-          <label>Perfil
-            ${selectField("role", roles, editingUser?.role || "Solicitante", "Selecione o perfil")}
-          </label>
-          <label>Estabelecimento
-            ${selectField("unit", state.units.filter((item) => item.active).map((item) => item.name), editingUser?.unit || "", "Selecione o estabelecimento")}
-          </label>
-          <div class="actions">
-            <button type="submit">${editingUser ? "Salvar alterações" : "Adicionar usuário"}</button>
-            ${editingUser ? `<button type="button" class="secondary" id="cancel-user-edit">Cancelar</button>` : ""}
-          </div>
-          <p class="muted">Novos usuários recebem a senha inicial <strong>admin123</strong>.</p>
-        </form>
-      </div>
       <div class="card section">
         <h3>Responsável por área de solicitação</h3>
         <div class="grid">
           ${areas.map((area) => `
             <label>${escapeHtml(area)}
-              ${selectField(`area-responsible-${areaKey(area)}`, state.users.filter((user) => user.active !== false).map((user) => user.email), state.areaResponsibles?.[area] || "", "Selecione o responsável")}
+              ${selectField(`area-responsible-${areaKey(area)}`, responsibleOptions(), state.areaResponsibles?.[area] || "", "Selecione o responsável")}
             </label>
+          `).join("")}
+        </div>
+      </div>
+      <div class="card section">
+        <h3>Perfis de usuário</h3>
+        <div class="grid">
+          ${roles.map((role) => `
+            <article class="attachment-item">
+              <strong>${escapeHtml(profileRules[role].label)}</strong>
+              <span class="muted">${escapeHtml(profileRules[role].description)}</span>
+            </article>
           `).join("")}
         </div>
       </div>
@@ -1053,15 +1202,16 @@ function usersHtml() {
 
 function bindUsersEvents() {
   if (!isAdmin()) return;
-  document.querySelector("#user-form")?.addEventListener("submit", saveUser);
-  document.querySelector("#cancel-user-edit")?.addEventListener("click", () => {
+  document.querySelector("[data-new-user]")?.addEventListener("click", () => {
     editingUserId = null;
-    renderView();
+    currentView = "user-form";
+    renderShell();
   });
   document.querySelectorAll("[data-edit-user]").forEach((button) => {
     button.addEventListener("click", () => {
       editingUserId = button.dataset.editUser;
-      renderView();
+      currentView = "user-form";
+      renderShell();
     });
   });
   document.querySelectorAll("[data-toggle-user]").forEach((button) => {
@@ -1082,6 +1232,53 @@ function bindUsersEvents() {
       state.areaResponsibles[area] = event.currentTarget.value;
       saveState();
     });
+  });
+}
+
+function userFormHtml() {
+  if (!isAdmin()) {
+    return `
+      ${headerHtml("Usuários", "Gestão disponível apenas para administradores.")}
+      <section class="card section"><p class="muted">Seu perfil não tem permissão para modificar usuários.</p></section>
+    `;
+  }
+  const editingUser = state.users.find((user) => user.id === editingUserId) || null;
+  return `
+    ${headerHtml(editingUser ? "Editar usuário" : "Novo usuário", "Preencha nome, e-mail, perfil, estabelecimento e foto de perfil.")}
+    <form class="card section form-grid" id="user-form" data-id="${editingUser?.id || ""}">
+      <div class="span-3 user-photo-row">
+        ${avatarHtml(editingUser, "large")}
+        <label>Foto de perfil
+          <input name="photo" type="file" accept="image/*" />
+        </label>
+      </div>
+      <label>Nome
+        <input name="name" value="${escapeHtml(editingUser?.name || "")}" required />
+      </label>
+      <label>E-mail
+        <input name="email" type="email" value="${escapeHtml(editingUser?.email || "")}" required />
+      </label>
+      <label>Perfil
+        ${selectField("role", roles, editingUser?.role || "Solicitante", "Selecione o perfil")}
+      </label>
+      <label class="span-2">Estabelecimento
+        ${selectField("unit", state.units.filter((item) => item.active).map((item) => item.name), editingUser?.unit || "", "Selecione o estabelecimento")}
+      </label>
+      <div class="span-3 actions">
+        <button type="submit">${editingUser ? "Salvar alterações" : "Adicionar usuário"}</button>
+        <button type="button" class="secondary" id="cancel-user-edit">Cancelar</button>
+      </div>
+      <p class="span-3 muted">Novos usuários recebem a senha inicial <strong>admin123</strong>.</p>
+    </form>
+  `;
+}
+
+function bindUserFormEvents() {
+  document.querySelector("#user-form")?.addEventListener("submit", saveUser);
+  document.querySelector("#cancel-user-edit")?.addEventListener("click", () => {
+    editingUserId = null;
+    currentView = "users";
+    renderShell();
   });
 }
 
@@ -1129,6 +1326,7 @@ async function saveUser(event) {
 
   editingUserId = null;
   saveState();
+  currentView = "users";
   renderShell();
 }
 

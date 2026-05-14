@@ -146,7 +146,7 @@ work_orders 1---N attachments
 ## 4. Requisitos funcionais
 
 - Autenticação por e-mail e senha.
-- Perfis: Administrador, Solicitante, Responsável/Técnico, Logística e Gestor/Consulta.
+- Perfis: Administrador, Solicitante, Responsável e Gestor/Consulta. O perfil Equipe Logística foi removido.
 - Abertura de OS com ID único e data automática.
 - Estabelecimento vinculado ao usuário. Cada usuário pertence a uma única unidade e somente administradores podem alterar esse vínculo.
 - Listas dependentes de logística em cascata com base no CSV `LOGISTICA - LOGISTICA.csv`: área filtra natureza, natureza filtra tipo, tipo filtra descrição e descrição filtra detalhamento.
@@ -154,6 +154,7 @@ work_orders 1---N attachments
 - Solicitantes não podem alterar status; somente administrador e responsável vinculado à OS podem fazer essa alteração.
 - Campo de anexos com upload de arquivos, imagens, PDFs, documentos e planilhas.
 - Administrador pode adicionar, editar, excluir logicamente e reativar usuários, incluindo nome, e-mail, perfil, estabelecimento e foto de perfil.
+- Inclusão e edição de cadastros ocorrem em páginas dedicadas, separadas das listagens de unidades, logística, rotas, veículos, motoristas e usuários.
 - Atribuição de responsável, motorista, veículo e rota.
 - Alteração de status com histórico.
 - Mensagens internas por OS.
@@ -181,7 +182,7 @@ work_orders 1---N attachments
 - Solicitante abre uma nova OS.
 - Administrador revisa e atribui responsável.
 - Responsável altera status e registra mensagens.
-- Logística vincula motorista, veículo e rota.
+- Administrador vincula motorista, veículo e rota quando necessário.
 - Gestor consulta indicadores e filtra ordens.
 - Administrador mantém cadastros de apoio.
 
