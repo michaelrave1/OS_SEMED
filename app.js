@@ -13,9 +13,9 @@ const statuses = [
 
 const demoUsers = [
   { id: "u-admin", name: "Administrador", email: "admin", password: "admin", role: "Administrador", unit: "" },
-  { id: "u-solicitante", name: "Solicitante", email: "solicitante@dirlogistica.local", password: "admin123", role: "Solicitante", unit: "" },
-  { id: "u-tecnico", name: "Responsável Técnico", email: "tecnico@dirlogistica.local", password: "admin123", role: "Responsável", unit: "" },
-  { id: "u-gestor", name: "Gestor Consulta", email: "gestor@dirlogistica.local", password: "admin123", role: "Gestor/Consulta", unit: "" },
+  { id: "u-solicitante", name: "Solicitante", email: "solicitante", password: "admin123", role: "Solicitante", unit: "" },
+  { id: "u-tecnico", name: "Responsável Técnico", email: "tecnico", password: "admin123", role: "Responsável", unit: "" },
+  { id: "u-gestor", name: "Gestor Consulta", email: "gestor", password: "admin123", role: "Gestor/Consulta", unit: "" },
 ];
 
 const defaultAreaResponsibles = {
